@@ -6,5 +6,5 @@ class Campaign < ApplicationRecord
 
   ### VALIDATIONS ###
 
-  validates :title, :ad_unit_format, :ad_unit_url, presence: true
+  validates :title, :ad_unit_url, presence: true
 end

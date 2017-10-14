@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014214641) do
+ActiveRecord::Schema.define(version: 20171014231000) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string "key"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20171014214641) do
     t.string "title"
     t.text "description"
     t.string "click_url"
-    t.string "ad_unit_format"
     t.string "ad_unit_url"
     t.boolean "active"
     t.datetime "created_at", null: false
