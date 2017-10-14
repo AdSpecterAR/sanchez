@@ -9,6 +9,11 @@ class User < ApplicationRecord
   VALID_ACCOUNT_TYPES = [ACCOUNT_TYPE_ADVERTISER, ACCOUNT_TYPE_DEVELOPER]
 
 
+  ### ASSOCIATIONS ###
+
+  has_many :campaigns, dependent: :destroy
+  has_many :developer_apps, dependent: :destroy
+
   ### SCOPES ###
 
 
@@ -17,8 +22,8 @@ class User < ApplicationRecord
   validates :account_type, presence: true, inclusion: {in: VALID_ACCOUNT_TYPES, message: "must be one of #{VALID_ACCOUNT_TYPES.join(', ')}"}
   validates :first_name, :last_name, :email, presence: true
   validate :password_valid
-  validate :emails_presence
-  validate :unique_emails
+  validate :email_presence
+  validate :unique_email
 
 
   ### CALLBACKS ###
@@ -70,7 +75,8 @@ class User < ApplicationRecord
   end
 
   def unique_email
-    users = User.where("? = ANY (email)", email).where.not(id: id)
+    # users = User.where("? = ANY (email)", email).where.not(id: id)
+    users = []
     if users.count > 0
       errors.add(:email, "email not unique")
       return
