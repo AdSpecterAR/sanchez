@@ -15,7 +15,7 @@ class User < ApplicationRecord
   ### VALIDATIONS ###
 
   validates :account_type, presence: true, inclusion: {in: VALID_ACCOUNT_TYPES, message: "must be one of #{VALID_ACCOUNT_TYPES.join(', ')}"}
-
+  validates :first_name, :last_name, :email, presence: true
   validate :password_valid
   validate :emails_presence
   validate :unique_emails
