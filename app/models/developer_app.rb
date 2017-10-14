@@ -1,0 +1,18 @@
+class DeveloperApp < ApplicationRecord
+
+  ### ASSOCIATIONS ###
+
+  has_one :api_key
+  belongs_to :user
+
+
+  ### VALIDATIONS ###
+
+  validates :user, :name, presence: true
+
+  ### INSTANCE METHODS ###
+
+  def client_api_key
+    "#{api_key.key}"
+  end
+end
