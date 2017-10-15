@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   namespace :app do
     namespace :v1 do
       post "/impressions" => "impressions#create"
+      post "/campaigns" => "campaigns#create"
+      post "/developer_app" => "developer_apps#create"
     end
   end
 end
