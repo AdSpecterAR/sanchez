@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014231000) do
+ActiveRecord::Schema.define(version: 20171015000448) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string "key"
@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(version: 20171014231000) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_developer_apps_on_user_id"
+  end
+
+  create_table "impressions", force: :cascade do |t|
+    t.datetime "impression_started_at"
+    t.datetime "impression_ended_at"
+    t.boolean "clicked"
+    t.integer "developer_app_id"
+    t.integer "campaign_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_impressions_on_campaign_id"
+    t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"
   end
 
   create_table "users", force: :cascade do |t|
