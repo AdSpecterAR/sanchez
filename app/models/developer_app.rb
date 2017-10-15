@@ -3,6 +3,8 @@ class DeveloperApp < ApplicationRecord
   ### ASSOCIATIONS ###
 
   has_one :api_key
+  has_many :campaigns, through: :impressions
+
   belongs_to :user
 
 
