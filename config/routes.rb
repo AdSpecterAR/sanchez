@@ -3,8 +3,17 @@ Rails.application.routes.draw do
 
   namespace :app do
     namespace :v1 do
+      ### DEVELOPER APPS ###
+
       post "/impressions" => "impressions#create"
+
+      ### CAMPAIGNS ###
+
       post "/campaigns" => "campaigns#create"
+
+      ### DEVELOPER APPS ###
+
+      get "/developer_app" => "developer_apps#show"
       post "/developer_app" => "developer_apps#create"
     end
   end

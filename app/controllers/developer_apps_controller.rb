@@ -1,4 +1,8 @@
-class DeveloperAppController < ApplicationController
+class DeveloperAppsController < ApplicationController
+
+  def show
+    render json: { developer_app: DeveloperAppRepresenter.represent(@developer_app) }
+  end
 
   def create
     @developer_app = DeveloperApp.new(developer_app_params)
