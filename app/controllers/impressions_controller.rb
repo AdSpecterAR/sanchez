@@ -10,7 +10,9 @@ class ImpressionsController < ApplicationController
     end
   end
 
+
   protected
+
 
   def impression_params
     params
