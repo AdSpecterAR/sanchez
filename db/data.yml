@@ -1,0 +1,91 @@
+
+---
+api_keys:
+  columns:
+  - id
+  - key
+  - created_at
+  - updated_at
+  - developer_app_id
+  records: 
+  - - 1
+    - 896fa374e3e40eac8b4e93dfd39ecac6
+    - '2017-10-14 21:12:09.716198'
+    - '2017-10-14 21:12:09.716198'
+    - 
+  - - 2
+    - a258908925b0815606d701e477b647f9
+    - '2017-10-14 22:35:05.880701'
+    - '2017-10-14 22:35:05.880701'
+    - 
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - '2017-10-13 07:30:34.705725'
+    - '2017-10-13 07:30:34.705725'
+
+---
+developer_apps:
+  columns:
+  - id
+  - name
+  - created_at
+  - updated_at
+  - user_id
+  records: 
+  - - 3
+    - 
+    - '2017-10-14 22:36:08.747935'
+    - '2017-10-14 22:36:08.747935'
+    - 
+  - - 4
+    - 
+    - '2017-10-14 22:36:45.991674'
+    - '2017-10-14 22:36:45.991674'
+    - 
+  - - 5
+    - 
+    - '2017-10-14 22:37:01.028143'
+    - '2017-10-14 22:37:01.028143'
+    - 
+  - - 6
+    - test1
+    - '2017-10-14 22:44:00.899417'
+    - '2017-10-14 22:44:00.899417'
+    - 1
+  - - 7
+    - test1
+    - '2017-10-14 22:44:56.689598'
+    - '2017-10-14 22:44:56.689598'
+    - 1
+
+---
+users:
+  columns:
+  - id
+  - first_name
+  - last_name
+  - account_type
+  - username
+  - email
+  - password
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - john
+    - li
+    - developer
+    - 
+    - john@adspecter.com
+    - johnmike
+    - '2017-10-14 21:45:24.940103'
+    - '2017-10-14 21:45:24.940103'
