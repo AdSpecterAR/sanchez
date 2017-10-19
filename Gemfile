@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'mysql2'
 gem 'representable'
 gem 'cancancan'
 
