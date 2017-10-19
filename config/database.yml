@@ -10,6 +10,13 @@ development:
   password:
   host: localhost
 
+test:
+  <<: *default
+  database: adspecter_test
+  username: root
+  password:
+  host: localhost
+
 staging:
   <<: *default
   database: adspecter_staging
