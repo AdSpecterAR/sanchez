@@ -1,6 +1,6 @@
 require 'representable/json'
 
-class UserRepresentable < Representable::Decorator
+class UserRepresenter < Representable::Decorator
   include Representable::JSON
 
   defaults render_nil: true
