@@ -1,6 +1,6 @@
 require 'representable/json'
 
-class CampaignRepresentable < Representable::Decorator
+class CampaignRepresenter < Representable::Decorator
   include Representable::JSON
 
   defaults render_nil: true

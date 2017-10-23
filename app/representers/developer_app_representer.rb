@@ -1,6 +1,6 @@
 require 'representable/json'
 
-class DeveloperAppRepresentable < Representable::Decorator
+class DeveloperAppRepresenter < Representable::Decorator
   include Representable::JSON
 
   defaults render_nil: true
