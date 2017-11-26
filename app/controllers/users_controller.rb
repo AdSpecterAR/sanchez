@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user
+
   def create
     @user = User.new(user_params)
 
@@ -8,6 +10,10 @@ class UsersController < ApplicationController
     else
       render json: { error: "error" }
     end
+  end
+
+  def index
+    render json: { message: 'authenticated' }
   end
 
   protected

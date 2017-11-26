@@ -1,6 +1,8 @@
 class DeveloperAppsController < ApplicationController
 
   def show
+    @app = DeveloperApp.where(api_key: developer_app_params[:client_api_key])
+
     render json: { developer_app: DeveloperAppRepresenter.represent(@developer_app) }
   end
 

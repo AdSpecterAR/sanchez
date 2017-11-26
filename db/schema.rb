@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017234042) do
+ActiveRecord::Schema.define(version: 20171106020234) do
 
-  create_table "api_keys", force: :cascade do |t|
+  create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20171017234042) do
     t.index ["developer_app_id"], name: "index_api_keys_on_developer_app_id"
   end
 
-  create_table "campaigns", force: :cascade do |t|
+  create_table "campaigns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.text "description"
     t.string "click_url"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20171017234042) do
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
-  create_table "developer_apps", force: :cascade do |t|
+  create_table "developer_apps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20171017234042) do
     t.index ["user_id"], name: "index_developer_apps_on_user_id"
   end
 
-  create_table "impressions", force: :cascade do |t|
+  create_table "impressions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "impression_started_at"
     t.datetime "impression_ended_at"
     t.boolean "clicked"
@@ -52,13 +52,13 @@ ActiveRecord::Schema.define(version: 20171017234042) do
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "account_type"
     t.string "username"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
