@@ -17,8 +17,9 @@ module Sanchez
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins(*Rails.application.secrets.cors_allow.split(','))
-        resource '*', headers: :any, methods: [:get, :post, :options, :delete, :put], credentials: true
+        origins '*'
+        # origins(*Rails.application.secrets.cors_allow.split(','))
+        resource '*', headers: :any, methods: [:get, :post, :options, :delete, :put], credentials: false
       end
     end
   end

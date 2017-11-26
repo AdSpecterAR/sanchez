@@ -6,7 +6,8 @@ describe UsersController, type: :controller do
       first_name: 'John',
       last_name: 'Li',
       account_type: 'Developer',
-      email: 'john@adspecter.com'
+      email: 'john@adspecter.com',
+      password: 'password1'
     }
   end
 

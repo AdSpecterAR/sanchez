@@ -2,6 +2,8 @@ class User < ApplicationRecord
 
   ### INCLUDES ###
 
+  has_secure_password
+
   ### CONSTANTS ###
 
   ACCOUNT_TYPE_ADVERTISER = 'advertiser'
@@ -31,6 +33,11 @@ class User < ApplicationRecord
 
 
   ### CLASS METHODS ###
+
+
+  def self.from_token_payload payload
+    payload['sub']
+  end
 
 
   ### INSTANCE_METHODS ###
