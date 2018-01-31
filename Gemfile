@@ -32,8 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'omniauth', '~> 1.3.1'
-gem 'omniauth-auth0', '~> 1.4.1'
+# gem 'omniauth', '~> 1.3.1'
+# gem 'omniauth-auth0', '~> 1.4.1'
 gem 'mysql2'
 gem 'representable'
 gem 'cancancan'
@@ -41,7 +41,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'jwt'
 gem 'bcrypt'
 gem 'knock'
-gem 'dotenv-rails', require: 'dotenv/rails-now', group: [:development, :test]
+# gem 'dotenv-rails', require: 'dotenv/rails-now', group: [:development, :test]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
