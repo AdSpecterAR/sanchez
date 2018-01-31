@@ -1,7 +1,7 @@
 class TestsController < ApplicationController
 
   def index
-    render json: { image_url: "http://www.apple.com/euro/ios/ios8/a/generic/images/og.png"}
+    render json: { image_url: "https://naotw-pd.s3.amazonaws.com/coke_holiday_ooh_aotw.jpg"}
   end
 
 end
