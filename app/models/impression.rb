@@ -4,9 +4,10 @@ class Impression < ApplicationRecord
 
   belongs_to :developer_app
   belongs_to :campaign
+  belongs_to :app_session
 
 
   ### VALIDATIONS ###
 
-  validates :developer_app, :campaign, :impression_started_at, :impression_ended_at, presence: true
+  validates :developer_app, presence: true
 end

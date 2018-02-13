@@ -1,4 +1,5 @@
 class ImpressionsController < ApplicationController
+  # skip_before_action :verify_authenticity_token # only for development purposes
 
   def create
     @impression = Impression.new(impression_params)
@@ -10,6 +11,10 @@ class ImpressionsController < ApplicationController
     end
   end
 
+  def update
+  #   TODO: IMPLEMENT
+  end
+
 
   protected
 
@@ -18,10 +23,16 @@ class ImpressionsController < ApplicationController
     params
       .require(:impression)
       .permit(
+        :impression_started_at,
+        :served_at,
+        :shown_at,
+        :impression_ended_at,
         :developer_app_id,
         :campaign_id,
-        :impression_started_at,
-        :impression_ended_at,
+        :app_session_id,
+        :served,
+        :shown,
+        :shown_for_30_seconds,
         :clicked
       )
   end

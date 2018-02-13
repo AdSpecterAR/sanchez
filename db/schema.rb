@@ -10,14 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106020234) do
+ActiveRecord::Schema.define(version: 20180204063718) do
 
   create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "developer_app_id"
+    t.bigint "developer_app_id"
     t.index ["developer_app_id"], name: "index_api_keys_on_developer_app_id"
+  end
+
+  create_table "app_sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "campaigns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -28,7 +33,7 @@ ActiveRecord::Schema.define(version: 20171106020234) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
@@ -36,18 +41,41 @@ ActiveRecord::Schema.define(version: 20171106020234) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_developer_apps_on_user_id"
+  end
+
+  create_table "devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "device_model"
+    t.string "localized_model"
+    t.string "device_model_name"
+    t.string "name"
+    t.string "system_name"
+    t.string "system_version"
+    t.string "identifier_for_vendor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "app_session_id"
+    t.index ["app_session_id"], name: "index_devices_on_app_session_id"
   end
 
   create_table "impressions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "impression_started_at"
     t.datetime "impression_ended_at"
     t.boolean "clicked"
-    t.integer "developer_app_id"
-    t.integer "campaign_id"
+    t.bigint "developer_app_id"
+    t.bigint "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "shown_at"
+    t.datetime "served_at"
+    t.datetime "shown_for_30_seconds_at"
+    t.datetime "clicked_at"
+    t.boolean "served"
+    t.boolean "shown"
+    t.boolean "shown_for_30_seconds"
+    t.bigint "app_session_id"
+    t.index ["app_session_id"], name: "index_impressions_on_app_session_id"
     t.index ["campaign_id"], name: "index_impressions_on_campaign_id"
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"
   end
@@ -63,4 +91,11 @@ ActiveRecord::Schema.define(version: 20171106020234) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "api_keys", "developer_apps"
+  add_foreign_key "campaigns", "users"
+  add_foreign_key "developer_apps", "users"
+  add_foreign_key "devices", "app_sessions"
+  add_foreign_key "impressions", "app_sessions"
+  add_foreign_key "impressions", "campaigns"
+  add_foreign_key "impressions", "developer_apps"
 end
