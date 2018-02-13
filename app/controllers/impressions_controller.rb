@@ -1,6 +1,13 @@
 class ImpressionsController < ApplicationController
+  # skip_before_action :verify_authenticity_token # only for development purposes
 
   def create
+    puts "*********************"
+    puts "creating impression"
+    puts params
+    puts impression_params
+    puts "*********************"
+
     @impression = Impression.new(impression_params)
 
     if @impression.save
@@ -8,6 +15,14 @@ class ImpressionsController < ApplicationController
     else
       render json: { error: "error" }
     end
+  end
+
+  def update
+    puts "*********************"
+    puts "updating impression"
+    puts params
+    puts impression_params
+    puts "*********************"
   end
 
 
@@ -18,10 +33,16 @@ class ImpressionsController < ApplicationController
     params
       .require(:impression)
       .permit(
+        :impression_started_at,
+        :served_at,
+        :shown_at,
+        :impression_ended_at,
         :developer_app_id,
         :campaign_id,
-        :impression_started_at,
-        :impression_ended_at,
+        :app_session_id,
+        :served,
+        :shown,
+        :shown_for_30_seconds,
         :clicked
       )
   end

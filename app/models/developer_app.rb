@@ -6,6 +6,7 @@ class DeveloperApp < ApplicationRecord
   has_many :campaigns, through: :impressions
 
   belongs_to :user
+  belongs_to :app_session
 
 
   ### VALIDATIONS ###

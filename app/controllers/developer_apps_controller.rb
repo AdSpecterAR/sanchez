@@ -16,6 +16,25 @@ class DeveloperAppsController < ApplicationController
     end
   end
 
+  def authenticate
+    @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:client_api_key] }
+
+    return if @developer_app.nil?
+
+    @app_session = AppSession.new
+    @app_session.build_device(device_params)
+
+    if @app_session.save!
+      puts "***********************"
+      puts "GOOD"
+      puts "***********************"
+
+      render json: { app_session: AppSessionRepresenter.represent(@app_session) }
+    else
+      render json: { error: "error" }
+    end
+  end
+
   protected
 
   def developer_app_params
@@ -25,6 +44,23 @@ class DeveloperAppsController < ApplicationController
         :name,
         :client_api_key,
         :user_id
+      )
+  end
+
+  def device_params
+    params
+      .require(:device)
+      .permit(
+        :name,
+        :client_api_key,
+        :user_id,
+        :device,
+        :device_model,
+        :localized_model,
+        :device_model_name,
+        :name,
+        :system_name,
+        :system_version,
       )
   end
 end

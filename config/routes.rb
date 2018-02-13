@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   ### IMPRESSIONS ###
 
   post "/impressions" => "impressions#create"
+  post "/impressions/:id" => "impressions#update"
 
   ### CAMPAIGNS ###
 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
 
   get "/developer_app" => "developer_apps#show"
   post "/developer_app" => "developer_apps#create"
+  post "/developer_app/authenticate" => "developer_apps#authenticate"
 
   ### TEST ###
 
