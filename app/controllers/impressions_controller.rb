@@ -2,12 +2,6 @@ class ImpressionsController < ApplicationController
   # skip_before_action :verify_authenticity_token # only for development purposes
 
   def create
-    puts "*********************"
-    puts "creating impression"
-    puts params
-    puts impression_params
-    puts "*********************"
-
     @impression = Impression.new(impression_params)
 
     if @impression.save
@@ -18,11 +12,7 @@ class ImpressionsController < ApplicationController
   end
 
   def update
-    puts "*********************"
-    puts "updating impression"
-    puts params
-    puts impression_params
-    puts "*********************"
+  #   TODO: IMPLEMENT
   end
 
 

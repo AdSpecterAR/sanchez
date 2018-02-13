@@ -25,10 +25,6 @@ class DeveloperAppsController < ApplicationController
     @app_session.build_device(device_params)
 
     if @app_session.save!
-      puts "***********************"
-      puts "GOOD"
-      puts "***********************"
-
       render json: { app_session: AppSessionRepresenter.represent(@app_session) }
     else
       render json: { error: "error" }
