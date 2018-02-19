@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20180204063718) do
 
-  create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "api_keys", force: :cascade do |t|
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -20,12 +23,12 @@ ActiveRecord::Schema.define(version: 20180204063718) do
     t.index ["developer_app_id"], name: "index_api_keys_on_developer_app_id"
   end
 
-  create_table "app_sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "app_sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "campaigns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "campaigns", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "click_url"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180204063718) do
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
-  create_table "developer_apps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "developer_apps", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20180204063718) do
     t.index ["user_id"], name: "index_developer_apps_on_user_id"
   end
 
-  create_table "devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "devices", force: :cascade do |t|
     t.string "device_model"
     t.string "localized_model"
     t.string "device_model_name"
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 20180204063718) do
     t.index ["app_session_id"], name: "index_devices_on_app_session_id"
   end
 
-  create_table "impressions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "impressions", force: :cascade do |t|
     t.datetime "impression_started_at"
     t.datetime "impression_ended_at"
     t.boolean "clicked"
@@ -80,7 +83,7 @@ ActiveRecord::Schema.define(version: 20180204063718) do
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "account_type"

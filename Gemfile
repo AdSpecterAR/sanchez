@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 
 # gem 'omniauth', '~> 1.3.1'
 # gem 'omniauth-auth0', '~> 1.4.1'
-gem 'mysql2'
+gem 'pg'
 gem 'representable'
 gem 'cancancan'
 gem 'rack-cors', :require => 'rack/cors'
