@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :campaign do
+  factory :ad_unit do
     user
     title { Faker::Lorem.sentence }
     description { Faker::Lorem.sentence }

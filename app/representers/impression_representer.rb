@@ -10,7 +10,7 @@ class ImpressionRepresenter < Representable::Decorator
   property :impression_ended_at
   property :clicked
   property :developer_app
-  property :campaign
+  property :ad_unit
   property :created_at
   property :updated_at
 end

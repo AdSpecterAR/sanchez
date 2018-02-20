@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   ### CAMPAIGNS ###
 
-  post "/campaigns" => "campaigns#create"
+  post "/ad_units" => "ad_units#create"
 
   ### DEVELOPER APPS ###
 

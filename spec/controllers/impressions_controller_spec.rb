@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe ImpressionsController, type: :controller do
-  let(:campaign) { create(:campaign) }
+  let(:ad_unit) { create(:ad_unit) }
   let(:developer_app) { create(:developer_app) }
   let(:impression_params) do
     {
       impression_started_at: Time.now - 20.seconds,
       impression_ended_at: Time.now,
-      campaign_id: "1",                 # TODO: change to variables after migration to MySQL2
+      ad_unit_id: "1",                 # TODO: change to variables after migration to MySQL2
       developer_app_id: "1",            # TODO: change to variables after migration to MySQL2
       clicked: false
     }

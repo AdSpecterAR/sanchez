@@ -1,4 +1,4 @@
-class Campaign < ApplicationRecord
+class AdUnit < ApplicationRecord
 
   ### ASSOCIATIONS ###
 
