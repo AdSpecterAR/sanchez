@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204063718) do
+ActiveRecord::Schema.define(version: 20180220011013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_units", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "click_url"
+    t.string "ad_unit_url"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_ad_units_on_user_id"
+  end
 
   create_table "api_keys", force: :cascade do |t|
     t.string "key"
@@ -26,18 +38,6 @@ ActiveRecord::Schema.define(version: 20180204063718) do
   create_table "app_sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "campaigns", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "click_url"
-    t.string "ad_unit_url"
-    t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
   create_table "developer_apps", force: :cascade do |t|
@@ -94,11 +94,11 @@ ActiveRecord::Schema.define(version: 20180204063718) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "ad_units", "users"
   add_foreign_key "api_keys", "developer_apps"
-  add_foreign_key "campaigns", "users"
   add_foreign_key "developer_apps", "users"
   add_foreign_key "devices", "app_sessions"
+  add_foreign_key "impressions", "ad_units", column: "campaign_id"
   add_foreign_key "impressions", "app_sessions"
-  add_foreign_key "impressions", "campaigns"
   add_foreign_key "impressions", "developer_apps"
 end

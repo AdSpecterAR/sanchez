@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   ### ASSOCIATIONS ###
 
-  has_many :campaigns, dependent: :destroy
+  has_many :ad_units, dependent: :destroy
   has_many :developer_apps, dependent: :destroy
 
   ### SCOPES ###

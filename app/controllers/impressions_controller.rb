@@ -28,7 +28,7 @@ class ImpressionsController < ApplicationController
         :shown_at,
         :impression_ended_at,
         :developer_app_id,
-        :campaign_id,
+        :ad_unit_id,
         :app_session_id,
         :served,
         :shown,
