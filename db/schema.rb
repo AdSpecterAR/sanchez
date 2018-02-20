@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220011013) do
+ActiveRecord::Schema.define(version: 20180220211858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20180220011013) do
     t.datetime "impression_ended_at"
     t.boolean "clicked"
     t.bigint "developer_app_id"
-    t.bigint "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "shown_at"
@@ -78,8 +77,9 @@ ActiveRecord::Schema.define(version: 20180220011013) do
     t.boolean "shown"
     t.boolean "shown_for_30_seconds"
     t.bigint "app_session_id"
+    t.integer "ad_unit_id"
+    t.index ["ad_unit_id"], name: "index_impressions_on_ad_unit_id"
     t.index ["app_session_id"], name: "index_impressions_on_app_session_id"
-    t.index ["campaign_id"], name: "index_impressions_on_campaign_id"
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"
   end
 
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20180220011013) do
   add_foreign_key "api_keys", "developer_apps"
   add_foreign_key "developer_apps", "users"
   add_foreign_key "devices", "app_sessions"
-  add_foreign_key "impressions", "ad_units", column: "campaign_id"
+  add_foreign_key "impressions", "ad_units"
   add_foreign_key "impressions", "app_sessions"
   add_foreign_key "impressions", "developer_apps"
 end
