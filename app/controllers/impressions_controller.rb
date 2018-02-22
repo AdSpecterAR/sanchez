@@ -30,12 +30,9 @@ class ImpressionsController < ApplicationController
       .require(:impression)
       .permit(
         :id,
-        # :impression_started_at,
-        # :impression_ended_at,
         :developer_app_id,
         :ad_unit_id,
         :app_session_id,
-        # :shown_for_30_seconds,
         :clicked,
         :served,
         :shown,

@@ -6,8 +6,6 @@ class ImpressionRepresenter < Representable::Decorator
   defaults render_nil: true
 
   property :id
-  property :impression_started_at
-  property :impression_ended_at
   property :served
   property :served_at
   property :shown

@@ -11,7 +11,8 @@ describe ImpressionsController, type: :controller do
     Timecop.freeze(Time.current)
   end
 
-  def verify_impression_json(json)
+  def verify_impression_json(json, impression)
+    expect(json[:id]).to eql impression.id
     expect(json[:ad_unit][:id]).to eql impression.ad_unit.id
     expect(json[:developer_app][:id]).to eql impression.developer_app.id
     expect(json[:app_session][:id]).to eql impression.app_session.id
@@ -42,7 +43,9 @@ describe ImpressionsController, type: :controller do
       expect(response).to be_success
 
       response_json = parsed_response_json(response)
-      verify_impression_json(response_json[:impression])
+      impression = Impression.last
+
+      verify_impression_json(response_json[:impression], impression)
     end
   end
 
@@ -72,7 +75,7 @@ describe ImpressionsController, type: :controller do
 
       impression.reload
 
-      verify_impression_json(response_json[:impression])
+      verify_impression_json(response_json[:impression], impression)
     end
 
     it "updates impression after ad is clicked" do
@@ -100,7 +103,7 @@ describe ImpressionsController, type: :controller do
       expect(response).to be_success
       response_json = parsed_response_json(response)
 
-      verify_impression_json(response_json[:impression])
+      verify_impression_json(response_json[:impression], impression)
     end
   end
 end
