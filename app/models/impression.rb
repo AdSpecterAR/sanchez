@@ -8,6 +8,4 @@ class Impression < ApplicationRecord
 
 
   ### VALIDATIONS ###
-
-  validates :developer_app, presence: true
 end

@@ -4,9 +4,9 @@ class DeveloperApp < ApplicationRecord
 
   has_one :api_key
   has_many :ad_units, through: :impressions
+  has_many :app_sessions
 
   belongs_to :user
-  belongs_to :app_session
 
 
   ### VALIDATIONS ###

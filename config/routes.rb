@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   ### IMPRESSIONS ###
 
-  post "/impressions" => "impressions#create"
-  post "/impressions/:id" => "impressions#update"
+  resources :impressions, except: [:show, :delete]
+  # post "/impressions" => "impressions#create"
+  # post "/impressions/:id" => "impressions#update"
 
   ### CAMPAIGNS ###
 

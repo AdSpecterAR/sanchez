@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220211858) do
+ActiveRecord::Schema.define(version: 20180221000831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20180220211858) do
   create_table "app_sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "developer_app_id"
+    t.index ["developer_app_id"], name: "index_app_sessions_on_developer_app_id"
   end
 
   create_table "developer_apps", force: :cascade do |t|
@@ -77,7 +79,7 @@ ActiveRecord::Schema.define(version: 20180220211858) do
     t.boolean "shown"
     t.boolean "shown_for_30_seconds"
     t.bigint "app_session_id"
-    t.integer "ad_unit_id"
+    t.bigint "ad_unit_id"
     t.index ["ad_unit_id"], name: "index_impressions_on_ad_unit_id"
     t.index ["app_session_id"], name: "index_impressions_on_app_session_id"
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"
@@ -96,6 +98,7 @@ ActiveRecord::Schema.define(version: 20180220211858) do
 
   add_foreign_key "ad_units", "users"
   add_foreign_key "api_keys", "developer_apps"
+  add_foreign_key "app_sessions", "developer_apps"
   add_foreign_key "developer_apps", "users"
   add_foreign_key "devices", "app_sessions"
   add_foreign_key "impressions", "ad_units"

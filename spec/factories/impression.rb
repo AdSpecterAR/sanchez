@@ -1,9 +1,24 @@
 FactoryBot.define do
   factory :impression do
-    impression_started_at { Time.now - 20.seconds }
-    impression_ended_at { Time.now }
+    served true
+    served_at Time.now
+    shown false
     clicked false
     ad_unit
-    developer_app
+    app_session
+
+    trait :shown do
+      served_at Time.now - 15.seconds
+      shown true
+      shown_at Time.now
+    end
+
+    trait :clicked do
+      served_at Time.now - 15.seconds
+      shown true
+      shown_at Time.now - 10.seconds
+      clicked true
+      clicked_at Time.now
+    end
   end
 end

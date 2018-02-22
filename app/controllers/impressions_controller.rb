@@ -12,7 +12,13 @@ class ImpressionsController < ApplicationController
   end
 
   def update
-  #   TODO: IMPLEMENT
+    @impression = Impression.find(params[:id])
+
+    if @impression.update_attributes(impression_params)
+      render json: { impression: ImpressionRepresenter.represent(@impression) }
+    else
+      render json: { error: "error" }
+    end
   end
 
 
@@ -23,17 +29,19 @@ class ImpressionsController < ApplicationController
     params
       .require(:impression)
       .permit(
-        :impression_started_at,
-        :served_at,
-        :shown_at,
-        :impression_ended_at,
+        :id,
+        # :impression_started_at,
+        # :impression_ended_at,
         :developer_app_id,
         :ad_unit_id,
         :app_session_id,
+        # :shown_for_30_seconds,
+        :clicked,
         :served,
         :shown,
-        :shown_for_30_seconds,
-        :clicked
+        :served_at,
+        :shown_at,
+        :clicked_at
       )
   end
 end
