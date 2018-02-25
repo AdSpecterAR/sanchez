@@ -24,6 +24,7 @@ describe AdUnitsController, type: :controller do
     expect(json[:click_url]).to eql ad_unit.click_url
     expect(json[:ad_unit_url]).to eql ad_unit.ad_unit_url
     expect(json[:active]).to eql ad_unit.active
+    expect(json[:user][:id]).to eql ad_unit.user_id
   end
 
   describe "#create" do
