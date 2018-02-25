@@ -12,7 +12,7 @@ class AdUnit < ApplicationRecord
   class << self
     def default_ad_unit
       # TODO: change
-      AdUnit.find(1)
+      AdUnit.first
     end
   end
 end
