@@ -10,7 +10,7 @@ class AdUnitsController < ApplicationController
     end
   end
 
-  def index
+  def default
     # TODO: add logic to look at user ad format preferences
     @ad_unit = AdUnit.default_ad_unit
 
@@ -27,7 +27,8 @@ class AdUnitsController < ApplicationController
         :description,
         :click_url,
         :ad_unit_url,
-        :active
+        :active,
+        :user_id
       )
   end
 end

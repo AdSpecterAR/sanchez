@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   ### CAMPAIGNS ###
 
+  get "/ad_units/default" => "ad_units#default"
   post "/ad_units" => "ad_units#create"
 
   ### DEVELOPER APPS ###
