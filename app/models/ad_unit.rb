@@ -8,11 +8,4 @@ class AdUnit < ApplicationRecord
   ### VALIDATIONS ###
 
   validates :title, :ad_unit_url, presence: true
-
-  class << self
-    def default_ad_unit
-      # TODO: change
-      AdUnit.find(1)
-    end
-  end
 end
