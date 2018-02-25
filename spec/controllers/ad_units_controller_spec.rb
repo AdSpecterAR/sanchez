@@ -13,11 +13,29 @@ describe AdUnitsController, type: :controller do
     }
   end
 
+  before do
+    Timecop.freeze(Time.current)
+  end
+
+  def verify_ad_unit_json(json, ad_unit)
+    expect(json[:id]).to eql ad_unit.id
+    expect(json[:title]).to eql ad_unit.title
+    expect(json[:description]).to eql ad_unit.description
+    expect(json[:click_url]).to eql ad_unit.click_url
+    expect(json[:ad_unit_url]).to eql ad_unit.ad_unit_url
+    expect(json[:active]).to eql ad_unit.active
+  end
+
   describe "#create" do
     it "creates a new ad_unit" do
       post :create, params: { ad_unit: ad_unit_params }, format: :json
 
       expect(response).to be_success
+
+      response_json = parsed_response_json(response)
+      ad_unit = AdUnit.last
+
+      verify_ad_unit_json(response_json[:ad_unit], ad_unit)
     end
   end
 
@@ -26,6 +44,10 @@ describe AdUnitsController, type: :controller do
       get :default, format: :json
 
       expect(response).to be_success
+
+      response_json = parsed_response_json(response)
+
+      verify_ad_unit_json(response_json[:ad_unit], ad_unit)
     end
   end
 end
