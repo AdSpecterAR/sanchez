@@ -10,13 +10,6 @@ class AdUnitsController < ApplicationController
     end
   end
 
-  def index
-    # TODO: add logic to look at user ad format preferences
-    @ad_unit = AdUnit.default_ad_unit
-
-    render json: { ad_unit: AdUnitRepresenter.represent(@ad_unit) }
-  end
-
   protected
 
   def ad_unit_params
