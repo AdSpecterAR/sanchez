@@ -8,10 +8,21 @@ class DeveloperApp < ApplicationRecord
 
   belongs_to :user
 
-
+  PLATFORM_IOS = 'iOS'
+  PLATFORM_ANDROID = 'Android'
+  PLATFORM_WINDOWS = 'Windows'
+  PLATFORM_UNITY = 'Unity'
+  VALID_PLATFORMS = [
+    PLATFORM_IOS,
+    PLATFORM_ANDROID,
+    PLATFORM_WINDOWS,
+    PLATFORM_UNITY
+  ]
+  
   ### VALIDATIONS ###
 
-  validates :user, :name, presence: true
+  validates :name, presence: true
+  validates :platform, presence: true, inclusion: {in: VALID_PLATFORMS}
 
   ### INSTANCE METHODS ###
 
