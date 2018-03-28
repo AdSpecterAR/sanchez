@@ -19,14 +19,24 @@ class DeveloperAppsController < ApplicationController
   def authenticate
     @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:client_api_key] }
 
+    puts 'params'
+    puts params[:client_api_key]
+
+    puts 'developer app'
+    puts @developer_app
+
     return if @developer_app.nil?
+
+    puts 'developer app was not nil'
 
     @app_session = AppSession.new
     @app_session.build_device(device_params)
 
     if @app_session.save!
+      puts 'app session saved'
       render json: { app_session: AppSessionRepresenter.represent(@app_session) }
     else
+      puts 'app session NOT saved'
       render json: { error: "error" }
     end
   end
