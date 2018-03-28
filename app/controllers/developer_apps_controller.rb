@@ -18,7 +18,7 @@ class DeveloperAppsController < ApplicationController
 
   def authenticate
     @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:client_api_key] }
-
+    
     return if @developer_app.nil?
 
     @app_session = AppSession.new
