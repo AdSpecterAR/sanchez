@@ -55,4 +55,7 @@ Rails.application.configure do
 
   # Render debugging information preserving the response format.
   config.debug_exception_response_format = :api
+
+  # for devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

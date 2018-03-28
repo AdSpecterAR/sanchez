@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  post 'user_token' => 'user_token#create'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
+  # post 'user_token' => 'user_token#create'
+
+  ### AUTHENTICATION ###
+
+  resources :sessions, only: [:create, :destroy]
 
   ### USERS ###
 
@@ -11,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :impressions, except: [:show, :delete]
 
-  ### CAMPAIGNS ###
+  ### AD UNITS ###
 
   get "/ad_units/default" => "ad_units#default"
   post "/ad_units" => "ad_units#create"
@@ -24,5 +31,6 @@ Rails.application.routes.draw do
 
   ### TEST ###
 
+  root to: "tests#index"
   get "/test" => "tests#index"
 end
