@@ -20,6 +20,9 @@ class DeveloperAppsController < ApplicationController
     @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:client_api_key] }
 
     puts 'params'
+    puts params
+
+    puts 'params api key'
     puts params[:client_api_key]
 
     puts 'developer app'
