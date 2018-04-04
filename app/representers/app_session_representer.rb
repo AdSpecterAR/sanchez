@@ -8,4 +8,5 @@ class AppSessionRepresenter < Representable::Decorator
   property :id
   property :created_at
   property :updated_at
+  property :developer_app_id
 end

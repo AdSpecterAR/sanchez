@@ -12,7 +12,7 @@ class ImpressionRepresenter < Representable::Decorator
   property :shown_at
   property :clicked
   property :clicked_at
-  property :developer_app
+  property :developer_app_id
   property :ad_unit
   property :app_session
   property :created_at
