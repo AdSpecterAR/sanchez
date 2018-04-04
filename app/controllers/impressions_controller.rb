@@ -3,12 +3,25 @@ class ImpressionsController < ApplicationController
 
   def create
     @impression = Impression.new(impression_params)
+    @impression.served_at = Time.now
 
-    if @impression.save
-      render json: { impression: ImpressionRepresenter.represent(@impression) }
-    else
-      render json: { error: "error" }
-    end
+    render_impression_response(@impression)
+  end
+
+  def shown
+    @impression = Impression.find(params[:id])
+    @impression.shown = true
+    @impression.shown_at = Time.now
+
+    render_impression_response(@impression)
+  end
+
+  def clicked
+    @impression = Impression.find(params[:id])
+    @impression.clicked = true
+    @impression.clicked_at = Time.now
+
+    render_impression_response(@impression)
   end
 
   def update
@@ -24,6 +37,13 @@ class ImpressionsController < ApplicationController
 
   protected
 
+  def render_impression_response(impression)
+    if impression.save
+      render json: { impression: ImpressionRepresenter.represent(impression) }
+    else
+      render json: { error: "error" }
+    end
+  end
 
   def impression_params
     params

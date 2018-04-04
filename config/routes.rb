@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   ### IMPRESSIONS ###
 
   resources :impressions, except: [:show, :delete]
+  put "/impressions" => "impressions#create"
+  put "/impressions/:id/shown" => "impressions#shown"
+  put "/impressions/:id/clicked" => "impressions#clicked"
 
   ### AD UNITS ###
 
@@ -27,7 +30,7 @@ Rails.application.routes.draw do
 
   get "/developer_app" => "developer_apps#show"
   post "/developer_app" => "developer_apps#create"
-  post "/developer_app/authenticate" => "developer_apps#authenticate"
+  put "/developer_app/authenticate" => "developer_apps#authenticate"
 
   ### TEST ###
 

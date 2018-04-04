@@ -17,6 +17,10 @@ class DeveloperAppsController < ApplicationController
   end
 
   def authenticate
+    puts '*************'
+    puts 'request'
+    puts request.body.read
+
     @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:client_api_key] }
 
     puts 'params'
@@ -32,7 +36,7 @@ class DeveloperAppsController < ApplicationController
 
     puts 'developer app was not nil'
 
-    @app_session = AppSession.new
+    @app_session = AppSession.new(developer_app: @developer_app)
     @app_session.build_device(device_params)
 
     if @app_session.save!

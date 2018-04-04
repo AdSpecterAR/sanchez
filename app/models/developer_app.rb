@@ -3,8 +3,9 @@ class DeveloperApp < ApplicationRecord
   ### ASSOCIATIONS ###
 
   has_one :api_key
-  has_many :ad_units, through: :impressions
+  has_many :ad_units, through: :impressions # remove???
   has_many :app_sessions
+  has_many :impressions, through: :app_sessions
 
   belongs_to :user
 
