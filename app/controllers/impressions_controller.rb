@@ -3,6 +3,7 @@ class ImpressionsController < ApplicationController
 
   def create
     @impression = Impression.new(impression_params)
+    @impression.id = nil # c-sharp default for int is 0
     @impression.served_at = Time.now
 
     render_impression_response(@impression)
