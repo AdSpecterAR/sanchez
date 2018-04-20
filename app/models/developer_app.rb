@@ -27,7 +27,7 @@ class DeveloperApp < ApplicationRecord
 
   ### INSTANCE METHODS ###
 
-  def client_api_key
+  def developer_key
     "#{api_key.key}"
   end
 end

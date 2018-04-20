@@ -2,8 +2,11 @@ class ImpressionsController < ApplicationController
   # skip_before_action :verify_authenticity_token # only for development purposes
 
   def create
+    @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:developer_key] }
+
     @impression = Impression.new(impression_params)
     @impression.id = nil # c-sharp default for int is 0
+    @impression.developer_app_id = @developer_app.id
     @impression.served_at = Time.now
 
     render_impression_response(@impression)
