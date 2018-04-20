@@ -7,7 +7,7 @@ class DeveloperAppRepresenter < Representable::Decorator
 
   property :id
   property :name
-  property :client_api_key
+  property :developer_key
   property :user
   property :created_at
   property :updated_at

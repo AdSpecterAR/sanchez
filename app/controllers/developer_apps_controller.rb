@@ -1,7 +1,7 @@
 class DeveloperAppsController < ApplicationController
 
   def show
-    @app = DeveloperApp.where(api_key: developer_app_params[:client_api_key])
+    @app = DeveloperApp.where(api_key: developer_app_params[:developer_key])
 
     render json: { developer_app: DeveloperAppRepresenter.represent(@developer_app) }
   end
@@ -21,13 +21,13 @@ class DeveloperAppsController < ApplicationController
     puts 'request'
     puts request.body.read
 
-    @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:client_api_key] }
+    @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:developer_key] }
 
     puts 'params'
     puts params
 
     puts 'params api key'
-    puts params[:client_api_key]
+    puts params[:developer_key]
 
     puts 'developer app'
     puts @developer_app
@@ -55,7 +55,7 @@ class DeveloperAppsController < ApplicationController
       .require(:developer_app)
       .permit(
         :name,
-        :client_api_key,
+        :developer_key,
         :user_id
       )
   end
@@ -65,7 +65,7 @@ class DeveloperAppsController < ApplicationController
       .require(:device)
       .permit(
         :name,
-        :client_api_key,
+        :developer_key,
         :user_id,
         :device,
         :device_model,
