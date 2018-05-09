@@ -104,6 +104,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.1)
     multi_json (1.13.1)
+    mustache (1.0.5)
     nio4r (2.2.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -170,6 +171,10 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.0)
+    rspec_api_documentation (5.1.0)
+      activesupport (>= 3.0.0)
+      mustache (~> 1.0, >= 0.99.4)
+      rspec (~> 3.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.5)
@@ -247,6 +252,7 @@ DEPENDENCIES
   representable
   rspec
   rspec-rails
+  rspec_api_documentation
   sass-rails (~> 5.0)
   selenium-webdriver
   simple_token_authentication (~> 1.0)
@@ -262,4 +268,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.1
