@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Users API</title>
+    <title>AdUnits API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,15 +106,15 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>Users API</h1>
+      <h1>AdUnits API</h1>
 
-        <p class="explanation">Users may open sessions with many developer apps. They can be created by a POST request.</p>
+        <p class="explanation">A single advertisement that may be served.</p>
 
       <div class="article">
-        <h2>Create new user</h2>
-        <h3>POST /users</h3>
+        <h2>Create a new ad_unit</h2>
+        <h3>POST /ad_units</h3>
           <p class="explanation">
-            This method creates a new user.
+            This method creates a new advertisement and stores it in the database.
           </p>
 
           <h3>Parameters</h3>
@@ -128,50 +128,58 @@ table th, table td {
             <tbody>
               <tr>
                 <td class="required">
-                    <span class="name">user</span>
+                    <span class="name">ad_unit</span>
                 </td>
                 <td>
-                  <span class="description">New user</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <span class="name">user[first_name]</span>
-                </td>
-                <td>
-                  <span class="description">First name</span>
+                  <span class="description"> ad unit</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                    <span class="name">user[last_name]</span>
+                    <span class="name">ad_unit[title]</span>
                 </td>
                 <td>
-                  <span class="description">Last name</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <span class="name">user[account_type]</span>
-                </td>
-                <td>
-                  <span class="description">Developer or Advertiser</span>
+                  <span class="description">Advertisement title</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                    <span class="name">user[email]</span>
+                    <span class="name">ad_unit[description]</span>
                 </td>
                 <td>
-                  <span class="description">Email account</span>
+                  <span class="description">Advertisement description</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                    <span class="name">user[password]</span>
+                    <span class="name">ad_unit[click_url]</span>
                 </td>
                 <td>
-                  <span class="description">Password</span>
+                  <span class="description">Click URL</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[ad_unit_url]</span>
+                </td>
+                <td>
+                  <span class="description">Advetisement URL</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[active]</span>
+                </td>
+                <td>
+                  <span class="description">Active advertisement</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[user_id]</span>
+                </td>
+                <td>
+                  <span class="description">User ID</span>
                 </td>
               </tr>
             </tbody>
@@ -186,27 +194,48 @@ Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">POST /users</pre>
+          <pre class="request route highlight">POST /ad_units</pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">user[first_name]=John&user[last_name]=Li&user[account_type]=Developer&user[email]=john%40adspecter.com&user[password]=password1</pre>
+            <pre class="request body">ad_unit[title]=Officiis+quibusdam+dolor+voluptas+fugiat+est+sit+aut.&ad_unit[description]=Dignissimos+totam+natus+eaque+velit+non+sequi.&ad_unit[click_url]=http%3A%2F%2Ffunk.name%2Fnikki.haley&ad_unit[ad_unit_url]=http%3A%2F%2Ffunk.name%2Fnikki.haley&ad_unit[active]=true&ad_unit[user_id]=146</pre>
 
 
             <h3>Response</h3>
               <h4>Headers</h4>
-              <pre class="response headers">Location: /
-Content-Type: text/plain; charset=utf-8
-ETag: W/&quot;36a9e7f1c95b82ffb99743e0c5c4ce95&quot;
+              <pre class="response headers">Content-Type: application/json; charset=utf-8
+ETag: W/&quot;ea1939590155245e1a509475054ce939&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 5ba64f2d-3c33-4ad0-a4b2-eb2a171193dd
-X-Runtime: 0.017487
+X-Request-Id: 8fd293e2-0657-4544-94b4-a6b4fd3e8e32
+X-Runtime: 0.009870
 Vary: Origin
-Content-Length: 1</pre>
+Content-Length: 593</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
-              <pre class="response body"> </pre>
+              <pre class="response body">{
+  &quot;ad_unit&quot;: {
+    &quot;id&quot;: 61,
+    &quot;title&quot;: &quot;Officiis quibusdam dolor voluptas fugiat est sit aut.&quot;,
+    &quot;description&quot;: &quot;Dignissimos totam natus eaque velit non sequi.&quot;,
+    &quot;click_url&quot;: &quot;http://funk.name/nikki.haley&quot;,
+    &quot;ad_unit_url&quot;: &quot;http://funk.name/nikki.haley&quot;,
+    &quot;active&quot;: true,
+    &quot;user&quot;: {
+      &quot;id&quot;: 146,
+      &quot;first_name&quot;: &quot;Alicia&quot;,
+      &quot;last_name&quot;: &quot;Von&quot;,
+      &quot;account_type&quot;: &quot;advertiser&quot;,
+      &quot;username&quot;: &quot;AliciaVon&quot;,
+      &quot;created_at&quot;: &quot;2018-05-13T22:03:24.435Z&quot;,
+      &quot;updated_at&quot;: &quot;2018-05-13T22:03:24.435Z&quot;,
+      &quot;email&quot;: &quot;gilberto@bins.com&quot;,
+      &quot;authentication_token&quot;: &quot;cgA-aMNtmMEhUHyPxy2N&quot;
+    },
+    &quot;created_at&quot;: &quot;2018-05-13T22:03:24.448Z&quot;,
+    &quot;updated_at&quot;: &quot;2018-05-13T22:03:24.448Z&quot;
+  }
+}</pre>
       </div>
     </div>
   </body>
