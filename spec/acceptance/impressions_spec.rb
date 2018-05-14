@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource "Impressions" do
-	explanation "Within an app session many advertisements may be served, each advertisement of which may receive multiple impressions.\nImpressions may be received, shown, and or clicked."
+  explanation "Within an app session many advertisements may be served, each advertisement of which may receive multiple impressions.\nImpressions may be received, shown, and or clicked."
 
   let(:developer_app) { create(:developer_app) }
   let(:app_session) { create(:app_session, developer_app: developer_app) }
@@ -21,7 +21,7 @@ resource "Impressions" do
     }
   end
 	
-	post "/impressions" do
+  post "/impressions" do
     parameter :impression, "Impression", :required => true
     parameter :ad_unit_id, "Ad unit", :scope => :impression
     parameter :developer_app_id, "Developer App Id", :scope => :impression
@@ -33,15 +33,15 @@ resource "Impressions" do
     parameter :clicked, "Whether ad was clicked", :scope => :impression
     parameter :clicked_at, "When ad was clicked", :scope => :impression
 
-		example "Creates a new impression" do
+    example "Creates a new impression" do
       explanation "This method creates a new impression."
-			do_request(:impression => impression_params)
+      do_request(:impression => impression_params)
 
-			status.should == 200
-		end
-	end
+      status.should == 200
+    end
+  end
 
-	put "/impressions" do
+  put "/impressions" do
     parameter :impression, "Impression", :required => true
     parameter :ad_unit_id, "Ad unit", :scope => :impression
     parameter :developer_app_id, "Developer App Id", :scope => :impression
