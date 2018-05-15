@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AdUnits API</title>
+    <meta charset="utf-8">
+    <style>
+      
+body {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #404040;
+}
+
+.container {
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  zoom: 1;
+}
+
+pre {
+  background-color: #f5f5f5;
+  display: block;
+  padding: 8.5px;
+  margin: 0 0 18px;
+  line-height: 18px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+td.required .name:after {
+  float: right;
+  content: "required";
+  font-weight: normal;
+  color: #F08080;
+}
+
+a{
+  color: #0069d6;
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #404040;
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-size: 30px;
+  line-height: 36px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+}
+h3{
+  font-size: 18px;
+  line-height: 36px;
+}
+h4 {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+table{
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0;
+  border-collapse: separate;
+  font-size: 13px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+table th {
+  padding-top: 9px;
+  font-weight: bold;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+table th+th, table td+td {
+  border-left: 1px solid #ddd;
+}
+table th, table td {
+  padding: 10px 10px 9px;
+  line-height: 18px;
+  text-align: left;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>AdUnits API</h1>
+
+        <p class="explanation">A single advertisement that may be served.</p>
+
+      <div class="article">
+        <h2>Fetch default advertisement</h2>
+        <h3>GET /ad_units/default</h3>
+          <p class="explanation">
+            Retrieve the default advertisement unit and its metadata.
+          </p>
+
+          <h3>Parameters</h3>
+          <table class="parameters table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="required">
+                    <span class="name">ad_unit</span>
+                </td>
+                <td>
+                  <span class="description"> ad unit</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[title]</span>
+                </td>
+                <td>
+                  <span class="description">Advertisement title</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[description]</span>
+                </td>
+                <td>
+                  <span class="description">Advertisement description</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[click_url]</span>
+                </td>
+                <td>
+                  <span class="description">Click URL</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[ad_unit_url]</span>
+                </td>
+                <td>
+                  <span class="description">Advetisement URL</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[active]</span>
+                </td>
+                <td>
+                  <span class="description">Active advertisement</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[user_id]</span>
+                </td>
+                <td>
+                  <span class="description">User ID</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <h3>Request</h3>
+
+            <h4>Headers</h4>
+            <pre class="request headers">Host: example.org
+Cookie: </pre>
+
+          <h4>Route</h4>
+          <pre class="request route highlight">GET /ad_units/default?ad_unit[title]=Vero+consequatur+ut+alias+maxime+et+voluptas+commodi+inventore.&amp;ad_unit[description]=Rerum+quis+consectetur+omnis+aliquam.&amp;ad_unit[click_url]=http%3A%2F%2Fschmitteichmann.org%2Fjules_wiegand&amp;ad_unit[ad_unit_url]=http%3A%2F%2Fschmitteichmann.org%2Fjules_wiegand&amp;ad_unit[active]=true&amp;ad_unit[user_id]=145</pre>
+
+            <h4>Query Parameters</h4>
+            <pre class="request query_parameters highlight">ad_unit: {&quot;title&quot;=&gt;&quot;Vero consequatur ut alias maxime et voluptas commodi inventore.&quot;, &quot;description&quot;=&gt;&quot;Rerum quis consectetur omnis aliquam.&quot;, &quot;click_url&quot;=&gt;&quot;http://schmitteichmann.org/jules_wiegand&quot;, &quot;ad_unit_url&quot;=&gt;&quot;http://schmitteichmann.org/jules_wiegand&quot;, &quot;active&quot;=&gt;&quot;true&quot;, &quot;user_id&quot;=&gt;&quot;145&quot;}</pre>
+
+
+
+            <h3>Response</h3>
+              <h4>Headers</h4>
+              <pre class="response headers">Content-Type: application/json; charset=utf-8
+ETag: W/&quot;71f34b76c4b58e2ca66165f40b7a62a1&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: a80b28c9-78f5-46ba-8e35-3a8f988d629c
+X-Runtime: 0.021817
+Vary: Origin
+Content-Length: 627</pre>
+            <h4>Status</h4>
+            <pre class="response status">200 OK</pre>
+              <h4>Body</h4>
+              <pre class="response body">{
+  &quot;ad_unit&quot;: {
+    &quot;id&quot;: 59,
+    &quot;title&quot;: &quot;Vero consequatur ut alias maxime et voluptas commodi inventore.&quot;,
+    &quot;description&quot;: &quot;Rerum quis consectetur omnis aliquam.&quot;,
+    &quot;click_url&quot;: &quot;http://schmitteichmann.org/jules_wiegand&quot;,
+    &quot;ad_unit_url&quot;: &quot;http://nitzsche.name/freda.howe&quot;,
+    &quot;active&quot;: true,
+    &quot;user&quot;: {
+      &quot;id&quot;: 145,
+      &quot;first_name&quot;: &quot;Kurt&quot;,
+      &quot;last_name&quot;: &quot;Bergstrom&quot;,
+      &quot;account_type&quot;: &quot;advertiser&quot;,
+      &quot;username&quot;: &quot;KurtBergstrom&quot;,
+      &quot;created_at&quot;: &quot;2018-05-13T22:03:24.381Z&quot;,
+      &quot;updated_at&quot;: &quot;2018-05-13T22:03:24.381Z&quot;,
+      &quot;email&quot;: &quot;claire.gorczany@kreiger.org&quot;,
+      &quot;authentication_token&quot;: &quot;Xz2jxa_2yeNTuTJYSBSj&quot;
+    },
+    &quot;created_at&quot;: &quot;2018-05-13T22:03:24.390Z&quot;,
+    &quot;updated_at&quot;: &quot;2018-05-13T22:03:24.390Z&quot;
+  }
+}</pre>
+      </div>
+    </div>
+  </body>
+</html>
