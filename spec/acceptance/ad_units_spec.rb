@@ -1,10 +1,11 @@
 require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
-resource "AdUnits" do
+resource "Ad_Units" do
   explanation "A single advertisement that may be served."
 
-  let!(:ad_unit) { create(:ad_unit) }
+  let!(:user) { create(:user) }
+  let!(:ad_unit) { create(:ad_unit, user: user) }
   let(:ad_unit_params) do
     {
       title: ad_unit.title,
@@ -12,7 +13,7 @@ resource "AdUnits" do
       click_url: ad_unit.click_url,
       ad_unit_url: ad_unit.click_url,
       active: true,
-      user_id: ad_unit.user.id
+      user_id: user.id
     }
   end
 
