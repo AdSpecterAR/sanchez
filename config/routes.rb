@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   ### AD UNITS ###
 
   get "/ad_units/default" => "ad_units#default"
+  get "/ad_units/fetch" => "ad_units#fetch"
   post "/ad_units" => "ad_units#create"
 
   ### DEVELOPER APPS ###

@@ -40,6 +40,18 @@ describe AdUnitsController, type: :controller do
     end
   end
 
+  describe "#fetch" do
+    it "fetches the least recently served ad_unit" do
+      get :fetch, format: :json
+
+      expect(response).to be_success
+
+      response_json = parsed_response_json(response)
+
+      verify_ad_unit_json(response_json[:ad_unit], ad_unit)
+    end
+  end
+
   describe "#default" do
     it "fetches default ad_unit" do
       get :default, format: :json

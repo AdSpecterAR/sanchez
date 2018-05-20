@@ -10,6 +10,12 @@ class AdUnitsController < ApplicationController
     end
   end
 
+  def fetch
+    @ad_unit = AdUnit.fetch
+
+    render json: { ad_unit: AdUnitRepresenter.represent(@ad_unit) }
+  end
+
   def default
     # TODO: add logic to look at user ad format preferences
     @ad_unit = AdUnit.default_ad_unit

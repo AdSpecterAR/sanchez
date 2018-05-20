@@ -14,5 +14,11 @@ class AdUnit < ApplicationRecord
       # TODO: change
       AdUnit.first
     end
+
+    def fetch
+      # LRU = AdUnit.order(last_served_at: :desc).last
+      # LRU.last_served_at = Time.now
+      # LRU.save 
+    end
   end
 end
