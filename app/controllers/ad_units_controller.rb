@@ -10,6 +10,15 @@ class AdUnitsController < ApplicationController
     end
   end
 
+  def fetch
+    @ad_unit = AdUnit.fetch(
+      ad_format: ad_unit_params[:ad_format],
+      dimensions: ad_unit_params[:dimensions]
+    )
+
+    render json: { ad_unit: AdUnitRepresenter.represent(@ad_unit) }
+  end
+
   def default
     # TODO: add logic to look at user ad format preferences
     @ad_unit = AdUnit.default_ad_unit
@@ -28,6 +37,9 @@ class AdUnitsController < ApplicationController
         :click_url,
         :ad_unit_url,
         :active,
+        :last_served_at,
+        :ad_format,
+        :dimensions,
         :user_id
       )
   end

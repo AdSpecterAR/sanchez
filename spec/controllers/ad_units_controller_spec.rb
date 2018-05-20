@@ -9,6 +9,9 @@ describe AdUnitsController, type: :controller do
       click_url: ad_unit.click_url,
       ad_unit_url: ad_unit.click_url,
       active: true,
+      ad_format: ad_unit.ad_format,
+      dimensions: ad_unit.dimensions,
+      last_served_at: ad_unit.last_served_at,
       user_id: ad_unit.user.id
     }
   end
@@ -24,6 +27,9 @@ describe AdUnitsController, type: :controller do
     expect(json[:click_url]).to eql ad_unit.click_url
     expect(json[:ad_unit_url]).to eql ad_unit.ad_unit_url
     expect(json[:active]).to eql ad_unit.active
+    expect(json[:last_served_at]).to eql ad_unit.last_served_at
+    expect(json[:dimensions]).to eql ad_unit.dimensions
+    expect(json[:ad_format]).to eql ad_unit.ad_format
     expect(json[:user][:id]).to eql ad_unit.user_id
   end
 
@@ -35,6 +41,18 @@ describe AdUnitsController, type: :controller do
 
       response_json = parsed_response_json(response)
       ad_unit = AdUnit.last
+
+      verify_ad_unit_json(response_json[:ad_unit], ad_unit)
+    end
+  end
+
+  describe "#fetch" do
+    it "fetches the least recently served ad_unit" do
+      get :fetch, params: { ad_unit: ad_unit_params }, format: :json
+
+      expect(response).to be_success
+
+      response_json = parsed_response_json(response)
 
       verify_ad_unit_json(response_json[:ad_unit], ad_unit)
     end

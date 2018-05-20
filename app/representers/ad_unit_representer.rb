@@ -11,6 +11,9 @@ class AdUnitRepresenter < Representable::Decorator
   property :click_url
   property :ad_unit_url
   property :active
+  property :ad_format
+  property :dimensions
+  property :last_served_at
   property :user
   property :created_at
   property :updated_at
