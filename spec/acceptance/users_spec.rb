@@ -7,10 +7,11 @@ resource "Users" do
   let(:new_user_params) do
     {
       first_name: 'John',
-      last_name: 'Li',
-      account_type: 'Developer',
-      email: 'john@adspecter.com',
-      password: 'password1'
+      last_name: 'Wooden',
+      account_type: 'developer',
+      email: 'johnwooden@ucla.edu',
+      password: 'password1',
+      user_id: 1
     }
   end
 
