@@ -19,12 +19,6 @@ require 'rspec/rails'
 require 'rspec_test_helpers'
 
 RSpec.configure do |config|
-
-  # seed database on load
-  config.before(:suite) do
-    Rails.application.load_seed # loading seeds
-  end
-
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

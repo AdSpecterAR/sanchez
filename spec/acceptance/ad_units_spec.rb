@@ -4,8 +4,8 @@ require 'rspec_api_documentation/dsl'
 resource "Ad_Units" do
   explanation "A single advertisement that may be served."
 
-  let!(:user) { create(:user) }
-  let!(:ad_unit) { create(:ad_unit, user: user) }
+  let(:user) { create(:user) }
+  let(:ad_unit) { create(:ad_unit, user: user) }
   let(:ad_unit_params) do
     {
       title: ad_unit.title,
@@ -13,7 +13,7 @@ resource "Ad_Units" do
       click_url: ad_unit.click_url,
       ad_unit_url: ad_unit.click_url,
       active: true,
-      user_id: user.id
+      user_id: ad_unit.user.id
     }
   end
 
