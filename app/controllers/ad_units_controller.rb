@@ -11,7 +11,10 @@ class AdUnitsController < ApplicationController
   end
 
   def fetch
-    @ad_unit = AdUnit.fetch
+    @ad_unit = AdUnit.fetch(
+      format: ad_unit_params[:format],
+      dimensions: ad_unit_params[:dimensions]
+    )
 
     render json: { ad_unit: AdUnitRepresenter.represent(@ad_unit) }
   end
@@ -34,6 +37,9 @@ class AdUnitsController < ApplicationController
         :click_url,
         :ad_unit_url,
         :active,
+        :last_served_at,
+        :format,
+        :dimensions,
         :user_id
       )
   end

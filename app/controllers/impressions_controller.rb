@@ -6,6 +6,7 @@ class ImpressionsController < ApplicationController
 
     @impression = Impression.new(impression_params)
     @impression.id = nil # c-sharp default for int is 0
+    # change below
     @impression.developer_app_id = @developer_app.id
     @impression.served_at = Time.now
 
