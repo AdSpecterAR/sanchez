@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180520205252) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "dimensions"
-    t.string "format"
+    t.string "ad_format"
     t.datetime "last_served_at"
     t.index ["user_id"], name: "index_ad_units_on_user_id"
   end

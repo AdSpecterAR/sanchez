@@ -31,7 +31,7 @@ class AdUnit < ApplicationRecord
   ### VALIDATIONS ###
 
   validates :title, :ad_unit_url, :dimensions, presence: true
-  validates :format, inclusion: VALID_FORMATS, presence: true
+  validates :ad_format, inclusion: VALID_FORMATS, presence: true
   validates :dimensions, inclusion: VALID_DIMENSIONS, presence: true
 
   class << self
@@ -40,7 +40,7 @@ class AdUnit < ApplicationRecord
       AdUnit.first
     end
 
-    def fetch_all(format:, dimensions:)
+    def fetch_all(ad_format:, dimensions:)
       # TODO: if used directly from controller, add maximum
       # number of ads to query and revisit 'where'
       AdUnit
@@ -48,13 +48,13 @@ class AdUnit < ApplicationRecord
         .order('last_served_at asc')
         .includes([:user])
         .where(
-          format: format,
+          ad_format: ad_format,
           dimensions: dimensions
         )
     end
 
-    def fetch(format:, dimensions:)
-      AdUnit.fetch_all(format: format, dimensions: dimensions).first
+    def fetch(ad_format:, dimensions:)
+      AdUnit.fetch_all(ad_format: ad_format, dimensions: dimensions).first
     end
   end
 end

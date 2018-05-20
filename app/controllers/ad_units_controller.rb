@@ -12,7 +12,7 @@ class AdUnitsController < ApplicationController
 
   def fetch
     @ad_unit = AdUnit.fetch(
-      format: ad_unit_params[:format],
+      ad_format: ad_unit_params[:ad_format],
       dimensions: ad_unit_params[:dimensions]
     )
 
@@ -38,7 +38,7 @@ class AdUnitsController < ApplicationController
         :ad_unit_url,
         :active,
         :last_served_at,
-        :format,
+        :ad_format,
         :dimensions,
         :user_id
       )

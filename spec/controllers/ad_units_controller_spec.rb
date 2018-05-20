@@ -9,7 +9,7 @@ describe AdUnitsController, type: :controller do
       click_url: ad_unit.click_url,
       ad_unit_url: ad_unit.click_url,
       active: true,
-      format: ad_unit.format,
+      ad_format: ad_unit.ad_format,
       dimensions: ad_unit.dimensions,
       last_served_at: ad_unit.last_served_at,
       user_id: ad_unit.user.id
@@ -29,7 +29,7 @@ describe AdUnitsController, type: :controller do
     expect(json[:active]).to eql ad_unit.active
     expect(json[:last_served_at]).to eql ad_unit.last_served_at
     expect(json[:dimensions]).to eql ad_unit.dimensions
-    expect(json[:format]).to eql ad_unit.format
+    expect(json[:ad_format]).to eql ad_unit.ad_format
     expect(json[:user][:id]).to eql ad_unit.user_id
   end
 
