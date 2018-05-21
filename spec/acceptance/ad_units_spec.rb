@@ -24,13 +24,6 @@ resource "Ad_Units" do
            last_served_at: Time.current,
            active: true
   end
-  let!(:older_ad_unit) do
-    create :ad_unit,
-           ad_format: AdUnit::FORMAT_IMAGE,
-           dimensions: AdUnit::DIMENSIONS_16_BY_9,
-           last_served_at: 1.day.ago,
-           active: true
-  end
 
 
   get "/ad_units/default" do
