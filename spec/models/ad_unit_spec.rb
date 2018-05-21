@@ -57,7 +57,8 @@ describe AdUnit, type: :model do
       expect(ad_unit).to be_valid
     end
 
-    it "should return last served ad" do
+    it "should return least recently served ad given no unserved ads" do
+      unserved_ad_unit.update(last_served_at: Time.current)
       ad_unit = AdUnit.fetch(ad_format: AdUnit::FORMAT_IMAGE, dimensions: AdUnit::DIMENSIONS_16_BY_9)
 
       expect(ad_unit).to eql older_ad_unit

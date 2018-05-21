@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ad_Units API</title>
+    <meta charset="utf-8">
+    <style>
+      
+body {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #404040;
+}
+
+.container {
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  zoom: 1;
+}
+
+pre {
+  background-color: #f5f5f5;
+  display: block;
+  padding: 8.5px;
+  margin: 0 0 18px;
+  line-height: 18px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+td.required .name:after {
+  float: right;
+  content: "required";
+  font-weight: normal;
+  color: #F08080;
+}
+
+a{
+  color: #0069d6;
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #404040;
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-size: 30px;
+  line-height: 36px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+}
+h3{
+  font-size: 18px;
+  line-height: 36px;
+}
+h4 {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+table{
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0;
+  border-collapse: separate;
+  font-size: 13px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+table th {
+  padding-top: 9px;
+  font-weight: bold;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+table th+th, table td+td {
+  border-left: 1px solid #ddd;
+}
+table th, table td {
+  padding: 10px 10px 9px;
+  line-height: 18px;
+  text-align: left;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ad_Units API</h1>
+
+        <p class="explanation">A single advertisement that may be served.</p>
+
+      <div class="article">
+        <h2>Fetch default ad unit</h2>
+        <h3>GET /ad_units/default</h3>
+          <p class="explanation">
+            Retrieve the default advertisement unit and its metadata.
+          </p>
+
+          <h3>Parameters</h3>
+          <table class="parameters table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="required">
+                    <span class="name">ad_unit</span>
+                </td>
+                <td>
+                  <span class="description"> ad unit</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[title]</span>
+                </td>
+                <td>
+                  <span class="description">Advertisement title</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[description]</span>
+                </td>
+                <td>
+                  <span class="description">Advertisement description</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[click_url]</span>
+                </td>
+                <td>
+                  <span class="description">Click URL</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[ad_unit_url]</span>
+                </td>
+                <td>
+                  <span class="description">Advetisement URL</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[active]</span>
+                </td>
+                <td>
+                  <span class="description">Active advertisement</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[user_id]</span>
+                </td>
+                <td>
+                  <span class="description">User ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[ad_format]</span>
+                </td>
+                <td>
+                  <span class="description">Advertisement format</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[dimensions]</span>
+                </td>
+                <td>
+                  <span class="description">Advertisement dimensions</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[last_served_at]</span>
+                </td>
+                <td>
+                  <span class="description">Time at which ad unit was last served</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <h3>Request</h3>
+
+            <h4>Headers</h4>
+            <pre class="request headers">Host: example.org
+Cookie: </pre>
+
+          <h4>Route</h4>
+          <pre class="request route highlight">GET /ad_units/default?ad_unit[title]=Deserunt+odit+et+quidem+voluptatem+temporibus+labore+officia.&amp;ad_unit[description]=Magnam+aut+ab+enim+similique+neque+quis.&amp;ad_unit[click_url]=http%3A%2F%2Fquigley.net%2Fliam&amp;ad_unit[ad_unit_url]=http%3A%2F%2Fquigley.net%2Fliam&amp;ad_unit[active]=true&amp;ad_unit[user_id]=867&amp;ad_unit[ad_format]=image&amp;ad_unit[dimensions]=16%3A9&amp;ad_unit[last_served_at]=2018-05-21+04%3A10%3A37+UTC&amp;image=image&amp;16%3A9=16%3A9</pre>
+
+            <h4>Query Parameters</h4>
+            <pre class="request query_parameters highlight">ad_unit: {&quot;title&quot;=&gt;&quot;Deserunt odit et quidem voluptatem temporibus labore officia.&quot;, &quot;description&quot;=&gt;&quot;Magnam aut ab enim similique neque quis.&quot;, &quot;click_url&quot;=&gt;&quot;http://quigley.net/liam&quot;, &quot;ad_unit_url&quot;=&gt;&quot;http://quigley.net/liam&quot;, &quot;active&quot;=&gt;&quot;true&quot;, &quot;user_id&quot;=&gt;&quot;867&quot;, &quot;ad_format&quot;=&gt;&quot;image&quot;, &quot;dimensions&quot;=&gt;&quot;16:9&quot;, &quot;last_served_at&quot;=&gt;&quot;2018-05-21 04:10:37 UTC&quot;}
+image: image
+16:9: 16:9</pre>
+
+
+
+            <h3>Response</h3>
+              <h4>Headers</h4>
+              <pre class="response headers">Content-Type: application/json; charset=utf-8
+ETag: W/&quot;47e569397b0999dc1e31a2136bb0065a&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 54f83e02-6baf-4bd3-8a9b-9c407498ec64
+X-Runtime: 0.022654
+Vary: Origin
+Content-Length: 693</pre>
+            <h4>Status</h4>
+            <pre class="response status">200 OK</pre>
+              <h4>Body</h4>
+              <pre class="response body">{
+  &quot;ad_unit&quot;: {
+    &quot;id&quot;: 595,
+    &quot;title&quot;: &quot;Deserunt odit et quidem voluptatem temporibus labore officia.&quot;,
+    &quot;description&quot;: &quot;Magnam aut ab enim similique neque quis.&quot;,
+    &quot;click_url&quot;: &quot;http://quigley.net/liam&quot;,
+    &quot;ad_unit_url&quot;: &quot;http://ernser.name/helena.cummerata&quot;,
+    &quot;active&quot;: true,
+    &quot;ad_format&quot;: &quot;image&quot;,
+    &quot;dimensions&quot;: &quot;16:9&quot;,
+    &quot;last_served_at&quot;: &quot;2018-05-21T04:10:36.604Z&quot;,
+    &quot;user&quot;: {
+      &quot;id&quot;: 867,
+      &quot;first_name&quot;: &quot;Keanu&quot;,
+      &quot;last_name&quot;: &quot;Waters&quot;,
+      &quot;account_type&quot;: &quot;advertiser&quot;,
+      &quot;username&quot;: &quot;KeanuWaters&quot;,
+      &quot;created_at&quot;: &quot;2018-05-21T04:10:37.087Z&quot;,
+      &quot;updated_at&quot;: &quot;2018-05-21T04:10:37.087Z&quot;,
+      &quot;email&quot;: &quot;newell_borer@damore.name&quot;,
+      &quot;authentication_token&quot;: &quot;ng9erNJpci_bE-4mrafA&quot;
+    },
+    &quot;created_at&quot;: &quot;2018-05-21T04:10:37.095Z&quot;,
+    &quot;updated_at&quot;: &quot;2018-05-21T04:10:37.095Z&quot;
+  }
+}</pre>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AdUnits API</title>
+    <title>Ad_Units API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,15 +106,15 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>AdUnits API</h1>
+      <h1>Ad_Units API</h1>
 
         <p class="explanation">A single advertisement that may be served.</p>
 
       <div class="article">
-        <h2>Fetch default advertisement</h2>
-        <h3>GET /ad_units/default</h3>
+        <h2>Create a new ad unit</h2>
+        <h3>POST /ad_units</h3>
           <p class="explanation">
-            Retrieve the default advertisement unit and its metadata.
+            This method creates a new advertisement and stores it in the database.
           </p>
 
           <h3>Parameters</h3>
@@ -182,6 +182,30 @@ table th, table td {
                   <span class="description">User ID</span>
                 </td>
               </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[ad_format]</span>
+                </td>
+                <td>
+                  <span class="description">Advertisement format</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[dimensions]</span>
+                </td>
+                <td>
+                  <span class="description">Advertisement dimensions</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[last_served_at]</span>
+                </td>
+                <td>
+                  <span class="description">Time at which ad unit was last served</span>
+                </td>
+              </tr>
             </tbody>
           </table>
 
@@ -190,49 +214,53 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Host: example.org
+Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">GET /ad_units/default?ad_unit[title]=Vero+consequatur+ut+alias+maxime+et+voluptas+commodi+inventore.&amp;ad_unit[description]=Rerum+quis+consectetur+omnis+aliquam.&amp;ad_unit[click_url]=http%3A%2F%2Fschmitteichmann.org%2Fjules_wiegand&amp;ad_unit[ad_unit_url]=http%3A%2F%2Fschmitteichmann.org%2Fjules_wiegand&amp;ad_unit[active]=true&amp;ad_unit[user_id]=145</pre>
+          <pre class="request route highlight">POST /ad_units</pre>
 
-            <h4>Query Parameters</h4>
-            <pre class="request query_parameters highlight">ad_unit: {&quot;title&quot;=&gt;&quot;Vero consequatur ut alias maxime et voluptas commodi inventore.&quot;, &quot;description&quot;=&gt;&quot;Rerum quis consectetur omnis aliquam.&quot;, &quot;click_url&quot;=&gt;&quot;http://schmitteichmann.org/jules_wiegand&quot;, &quot;ad_unit_url&quot;=&gt;&quot;http://schmitteichmann.org/jules_wiegand&quot;, &quot;active&quot;=&gt;&quot;true&quot;, &quot;user_id&quot;=&gt;&quot;145&quot;}</pre>
 
+            <h4>Body</h4>
+            <pre class="request body">ad_unit[title]=Impedit+blanditiis+corrupti+et+autem+rerum+cum+commodi.&ad_unit[description]=Quisquam+eius+praesentium+porro+qui+ea+ex.&ad_unit[click_url]=http%3A%2F%2Fschmidt.net%2Fdevan&ad_unit[ad_unit_url]=http%3A%2F%2Fschmidt.net%2Fdevan&ad_unit[active]=true&ad_unit[user_id]=871&ad_unit[ad_format]=image&ad_unit[dimensions]=16%3A9&ad_unit[last_served_at]=2018-05-21+04%3A10%3A37+UTC</pre>
 
 
             <h3>Response</h3>
               <h4>Headers</h4>
               <pre class="response headers">Content-Type: application/json; charset=utf-8
-ETag: W/&quot;71f34b76c4b58e2ca66165f40b7a62a1&quot;
+ETag: W/&quot;ad80160e93b42fca4e4497c3c31cca52&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: a80b28c9-78f5-46ba-8e35-3a8f988d629c
-X-Runtime: 0.021817
+X-Request-Id: 5a917c60-4906-4000-94d9-a25fa8df53ce
+X-Runtime: 0.010894
 Vary: Origin
-Content-Length: 627</pre>
+Content-Length: 683</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;ad_unit&quot;: {
-    &quot;id&quot;: 59,
-    &quot;title&quot;: &quot;Vero consequatur ut alias maxime et voluptas commodi inventore.&quot;,
-    &quot;description&quot;: &quot;Rerum quis consectetur omnis aliquam.&quot;,
-    &quot;click_url&quot;: &quot;http://schmitteichmann.org/jules_wiegand&quot;,
-    &quot;ad_unit_url&quot;: &quot;http://nitzsche.name/freda.howe&quot;,
+    &quot;id&quot;: 601,
+    &quot;title&quot;: &quot;Impedit blanditiis corrupti et autem rerum cum commodi.&quot;,
+    &quot;description&quot;: &quot;Quisquam eius praesentium porro qui ea ex.&quot;,
+    &quot;click_url&quot;: &quot;http://schmidt.net/devan&quot;,
+    &quot;ad_unit_url&quot;: &quot;http://schmidt.net/devan&quot;,
     &quot;active&quot;: true,
+    &quot;ad_format&quot;: &quot;image&quot;,
+    &quot;dimensions&quot;: &quot;16:9&quot;,
+    &quot;last_served_at&quot;: &quot;2018-05-21T04:10:37.000Z&quot;,
     &quot;user&quot;: {
-      &quot;id&quot;: 145,
-      &quot;first_name&quot;: &quot;Kurt&quot;,
-      &quot;last_name&quot;: &quot;Bergstrom&quot;,
-      &quot;account_type&quot;: &quot;advertiser&quot;,
-      &quot;username&quot;: &quot;KurtBergstrom&quot;,
-      &quot;created_at&quot;: &quot;2018-05-13T22:03:24.381Z&quot;,
-      &quot;updated_at&quot;: &quot;2018-05-13T22:03:24.381Z&quot;,
-      &quot;email&quot;: &quot;claire.gorczany@kreiger.org&quot;,
-      &quot;authentication_token&quot;: &quot;Xz2jxa_2yeNTuTJYSBSj&quot;
+      &quot;id&quot;: 871,
+      &quot;first_name&quot;: &quot;Desmond&quot;,
+      &quot;last_name&quot;: &quot;Kovacek&quot;,
+      &quot;account_type&quot;: &quot;developer&quot;,
+      &quot;username&quot;: &quot;DesmondKovacek&quot;,
+      &quot;created_at&quot;: &quot;2018-05-21T04:10:37.175Z&quot;,
+      &quot;updated_at&quot;: &quot;2018-05-21T04:10:37.175Z&quot;,
+      &quot;email&quot;: &quot;turner@moorekreiger.org&quot;,
+      &quot;authentication_token&quot;: &quot;zHDktKsfPXHxt3b86qq3&quot;
     },
-    &quot;created_at&quot;: &quot;2018-05-13T22:03:24.390Z&quot;,
-    &quot;updated_at&quot;: &quot;2018-05-13T22:03:24.390Z&quot;
+    &quot;created_at&quot;: &quot;2018-05-21T04:10:37.198Z&quot;,
+    &quot;updated_at&quot;: &quot;2018-05-21T04:10:37.198Z&quot;
   }
 }</pre>
       </div>
