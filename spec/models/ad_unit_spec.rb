@@ -60,7 +60,7 @@ describe AdUnit, type: :model do
     it "should return last served ad" do
       ad_unit = AdUnit.fetch(ad_format: AdUnit::FORMAT_IMAGE, dimensions: AdUnit::DIMENSIONS_16_BY_9)
 
-      expect(ad_unit).to eql older_ad_unit
+      expect(ad_unit).to eql unserved_ad_unit
     end
 
     it "should not return an ad unit without corresponding format or dimension" do

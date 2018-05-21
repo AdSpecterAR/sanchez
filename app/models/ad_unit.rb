@@ -45,7 +45,12 @@ class AdUnit < ApplicationRecord
       # number of ads to query and revisit 'where'
       AdUnit
         .active
-        .order('last_served_at asc')
+        .order(%q{
+          CASE
+          WHEN last_served_at IS NULL THEN 1
+          ELSE 0 END DESC,
+          last_served_at ASC
+        })
         .includes([:user])
         .where(
           ad_format: ad_format,
