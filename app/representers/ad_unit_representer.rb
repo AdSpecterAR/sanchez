@@ -13,6 +13,8 @@ class AdUnitRepresenter < Representable::Decorator
   property :active
   property :ad_format
   property :dimensions
+  property :aspect_ratio_width
+  property :aspect_ratio_height
   property :last_served_at
   property :user
   property :created_at
