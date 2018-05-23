@@ -9,9 +9,11 @@ class AdUnit < ApplicationRecord
 
   FORMAT_IMAGE = 'image'
   FORMAT_VIDEO = 'video'
+  FORMAT_PORTAL = 'portal'
   VALID_FORMATS = [
     FORMAT_IMAGE,
-    FORMAT_VIDEO
+    FORMAT_VIDEO,
+    FORMAT_PORTAL
   ]
 
   # TODO: Add valid aspect ratios
@@ -20,13 +22,21 @@ class AdUnit < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+  scope :rewarded, -> { where(rewarded: true) }
+  scope :unrewarded, -> { where(rewarded: false) }
+  scope :interstitial, -> { where(interstitial: true) }
+  scope :noninterstitial, -> { where(interstitial: false) }
+
 
   ### VALIDATIONS ###
 
   validates :title, :ad_unit_url, :aspect_ratio_width, :aspect_ratio_height, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
-  # TODO: validate aspect ratios
+  validates :dimensions, inclusion: VALID_DIMENSIONS, presence: true
+  validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
 
+  # TODO: validate aspect ratios
+  #
   class << self
     def default_ad_unit
       # TODO: change
