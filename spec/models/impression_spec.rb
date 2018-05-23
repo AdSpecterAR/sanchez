@@ -15,7 +15,13 @@ describe Impression, type: :model do
 
   describe "#ratio_interacted" do
     it "should return the correct ratio" do
+      impression.update(interaction_length: 15000)
+      impression.ad_unit.update(video_length: 30000)
+      impression.ad_unit.update(rewarded: true)
 
+      expect(impression.ratio_interacted).to eql 0.5
     end
   end
+
+
 end

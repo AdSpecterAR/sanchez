@@ -15,10 +15,14 @@ class Impression < ApplicationRecord
 
   class << self
     def ratio_interacted
-      return if @impression.ad_unit.video_length? || @impression.ad_unit.video_length <= 0
+      if self.ad_unit.video_length == nil || self.ad_unit.video_length <= 0
+        return false
+      end
 
-      if @impression.ad_unit.rewarded
-        return @impression.interaction_length.to_f / @impression.ad_unit.video_length.to_f
+      if self.ad_unit.rewarded
+        return self.interaction_length.to_f / self.ad_unit.video_length.to_f
+      else
+        return false
       end
     end
   end
@@ -33,4 +37,3 @@ end
 # CURRENT
 # app_session has_many impressions
 # developer_app has many app_sessions
-#
