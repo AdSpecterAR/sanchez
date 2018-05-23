@@ -23,6 +23,14 @@ describe AdUnit, type: :model do
            active: true
   end
   let!(:inactive_ad_unit) { create(:ad_unit, active: false) }
+  let!(:rewarded_ad_unit) do
+    create :ad_unit,
+           ad_format: AdUnit::FORMAT_VIDEO,
+           dimensions: AdUnit::DIMENSIONS_16_BY_9,
+           last_served_at: Time.current,
+           active: false,
+           rewarded: true
+  end
 
   describe "scopes" do
     it "should return only active ad units" do
@@ -47,6 +55,16 @@ describe AdUnit, type: :model do
       ad_unit.update(ad_format: 'GIF')
 
       expect(ad_unit).not_to be_valid
+    end
+
+    it "should return a valid rewarded ad unit" do
+      expect(rewarded_ad_unit).to be_valid
+    end
+
+    it "should not return a valid rewarded ad unit without video format" do
+      rewarded_ad_unit.update(ad_format: AdUnit::FORMAT_IMAGE)
+
+      expect(rewarded_ad_unit).not_to be_valid
     end
   end
 
