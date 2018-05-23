@@ -2,13 +2,12 @@ class Impression < ApplicationRecord
 
   ### ASSOCIATIONS ###
 
-  # belongs_to :developer_app
+  belongs_to :developer_app
   belongs_to :ad_unit
   belongs_to :app_session
 
 
   ### VALIDATIONS ###
-
 
   class << self
     def ratio_interacted
@@ -19,6 +18,11 @@ class Impression < ApplicationRecord
       end
     end
   end
+
+  def serve_ad_unit(time)
+    self.ad_unit.update_attributes(title: 'yo')
+  end
+
 end
 
 # DESIRED
@@ -30,4 +34,3 @@ end
 # CURRENT
 # app_session has_many impressions
 # developer_app has many app_sessions
-#

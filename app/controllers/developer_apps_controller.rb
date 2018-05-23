@@ -17,24 +17,9 @@ class DeveloperAppsController < ApplicationController
   end
 
   def authenticate
-    puts '*************'
-    puts 'request'
-    puts request.body.read
-
     @developer_app = DeveloperApp.find { |x| x.api_key.key == params[:developer_key] }
 
-    puts 'params'
-    puts params
-
-    puts 'params api key'
-    puts params[:developer_key]
-
-    puts 'developer app'
-    puts @developer_app
-
     return if @developer_app.nil?
-
-    puts 'developer app was not nil'
 
     @app_session = AppSession.new(developer_app: @developer_app)
     @app_session.build_device(device_params)
