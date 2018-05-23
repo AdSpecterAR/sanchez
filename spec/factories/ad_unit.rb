@@ -9,8 +9,15 @@ FactoryBot.define do
     ad_format { AdUnit::FORMAT_VIDEO }
     last_served_at nil
     active true
-    rewarded false
-    interstitial false
     video_length 0
+
+    trait :rewarded do
+      rewarded true
+    end
+
+    trait :interstitial do
+      interstitial true
+    end
+
   end
 end

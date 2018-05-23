@@ -8,6 +8,17 @@ class Impression < ApplicationRecord
 
 
   ### VALIDATIONS ###
+
+
+  class << self
+    def ratio_interacted
+      return if @impression.ad_unit.video_length? || @impression.ad_unit.video_length <= 0
+
+      if @impression.ad_unit.rewarded
+        return @impression.interaction_length.to_f / @impression.ad_unit.video_length.to_f
+      end
+    end
+  end
 end
 
 # DESIRED

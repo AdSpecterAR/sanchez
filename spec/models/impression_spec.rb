@@ -12,4 +12,10 @@ describe Impression, type: :model do
       expect(impression).to be_valid
     end
   end
+
+  describe "#ratio_interacted" do
+    it "should return the correct ratio" do
+
+    end
+  end
 end

@@ -40,11 +40,7 @@ class AdUnit < ApplicationRecord
   validates :title, :ad_unit_url, :dimensions, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
   validates :dimensions, inclusion: VALID_DIMENSIONS, presence: true
-  validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :ad_is_rewarded?
-
-  def ad_is_rewarded?
-    return rewarded
-  end
+  validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
 
   class << self
     def default_ad_unit
