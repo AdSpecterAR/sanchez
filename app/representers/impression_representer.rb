@@ -17,4 +17,5 @@ class ImpressionRepresenter < Representable::Decorator
   property :app_session
   property :created_at
   property :updated_at
+  property :interaction_length
 end
