@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180520205252) do
+ActiveRecord::Schema.define(version: 20180522224910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20180520205252) do
     t.string "dimensions"
     t.string "ad_format"
     t.datetime "last_served_at"
+    t.boolean "rewarded"
+    t.boolean "interstitial"
+    t.integer "video_length"
     t.index ["user_id"], name: "index_ad_units_on_user_id"
   end
 
@@ -85,6 +88,7 @@ ActiveRecord::Schema.define(version: 20180520205252) do
     t.boolean "shown_for_30_seconds"
     t.bigint "app_session_id"
     t.bigint "ad_unit_id"
+    t.integer "interaction_length"
     t.index ["ad_unit_id"], name: "index_impressions_on_ad_unit_id"
     t.index ["app_session_id"], name: "index_impressions_on_app_session_id"
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"

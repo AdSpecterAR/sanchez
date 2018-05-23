@@ -9,9 +9,11 @@ class AdUnit < ApplicationRecord
 
   FORMAT_IMAGE = 'image'
   FORMAT_VIDEO = 'video'
+  FORMAT_PORTAL = 'portal'
   VALID_FORMATS = [
     FORMAT_IMAGE,
-    FORMAT_VIDEO
+    FORMAT_VIDEO,
+    FORMAT_PORTAL
   ]
 
   DIMENSIONS_16_BY_9 = '16:9'
@@ -27,12 +29,22 @@ class AdUnit < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+  scope :rewarded, -> { where(rewarded: true) }
+  scope :unrewarded, -> { where(rewarded: false) }
+  scope :interstitial, -> { where(interstitial: true) }
+  scope :noninterstitial, -> { where(interstitial: false) }
+
 
   ### VALIDATIONS ###
 
   validates :title, :ad_unit_url, :dimensions, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
   validates :dimensions, inclusion: VALID_DIMENSIONS, presence: true
+  validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :ad_is_rewarded?
+
+  def ad_is_rewarded?
+    return rewarded
+  end
 
   class << self
     def default_ad_unit
