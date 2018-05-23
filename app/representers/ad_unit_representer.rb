@@ -17,4 +17,7 @@ class AdUnitRepresenter < Representable::Decorator
   property :user
   property :created_at
   property :updated_at
+  property :rewarded
+  property :interstitial
+  property :video_length
 end

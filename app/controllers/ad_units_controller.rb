@@ -40,7 +40,10 @@ class AdUnitsController < ApplicationController
         :last_served_at,
         :ad_format,
         :dimensions,
-        :user_id
+        :user_id,
+        :rewarded,
+        :interstitial,
+        :video_length
       )
   end
 end
