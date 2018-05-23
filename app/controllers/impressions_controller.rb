@@ -44,15 +44,6 @@ class ImpressionsController < ApplicationController
     end
   end
 
-  def ratio_interacted
-    @impression = Impression.find(params[:id])
-    @ad_unit = AdUnit.find(params[:id])
-    if @ad_unit.rewarded
-      return @impression.interaction_length / @ad_unit.video_length
-    end
-  end
-
-
   protected
 
   def render_impression_response(impression)

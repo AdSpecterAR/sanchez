@@ -13,6 +13,15 @@ class Impression < ApplicationRecord
     self.ad_unit.update_attributes(title: 'yo')
   end
 
+  class << self
+    def ratio_interacted
+      return if @impression.ad_unit.video_length? || @impression.ad_unit.video_length <= 0
+
+      if @impression.ad_unit.rewarded
+        return @impression.interaction_length.to_f / @impression.ad_unit.video_length.to_f
+      end
+    end
+  end
 end
 
 # DESIRED
@@ -24,3 +33,4 @@ end
 # CURRENT
 # app_session has_many impressions
 # developer_app has many app_sessions
+#
