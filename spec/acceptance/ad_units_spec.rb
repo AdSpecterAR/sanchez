@@ -13,14 +13,15 @@ resource "Ad_Units" do
       active: true,
       user_id: ad_unit.user.id,
       ad_format: AdUnit::FORMAT_IMAGE,
-      dimensions: AdUnit::DIMENSIONS_16_BY_9,
+      aspect_ratio_width: 16,
+      aspect_ratio_height: 9,
       last_served_at: Time.current
     }
   end
   let!(:ad_unit) do
     create :ad_unit,
+           :wide,
            ad_format: AdUnit::FORMAT_IMAGE,
-           dimensions: AdUnit::DIMENSIONS_16_BY_9,
            last_served_at: Time.current,
            active: true
   end
@@ -35,13 +36,14 @@ resource "Ad_Units" do
     parameter :active, "Active advertisement", :scope => :ad_unit
     parameter :user_id, "User ID", :scope => :ad_unit
     parameter :ad_format, "Advertisement format", :scope => :ad_unit
-    parameter :dimensions, "Advertisement dimensions", :scope => :ad_unit
+    parameter :aspect_ratio_width, "Width of aspect ratio", :scope => :ad_unit
+    parameter :aspect_ratio_height, "Height of aspect ratio", :scope => :ad_unit
     parameter :last_served_at, "Time at which ad unit was last served", :scope => :ad_unit
 
 
     example "Fetch default ad unit" do
       explanation "Retrieve the default advertisement unit and its metadata."
-      do_request(:ad_unit => ad_unit_params, AdUnit::FORMAT_IMAGE => ad_unit_params[:ad_format], AdUnit::DIMENSIONS_16_BY_9 => ad_unit_params[:dimensions])
+      do_request(:ad_unit => ad_unit_params)
 
       status.should == 200
     end
@@ -56,7 +58,8 @@ resource "Ad_Units" do
     parameter :active, "Active advertisement", :scope => :ad_unit
     parameter :user_id, "User ID", :scope => :ad_unit
     parameter :ad_format, "Advertisement format", :scope => :ad_unit
-    parameter :dimensions, "Advertisement dimensions", :scope => :ad_unit
+    parameter :aspect_ratio_width, "Width of aspect ratio", :scope => :ad_unit
+    parameter :aspect_ratio_height, "Height of aspect ratio", :scope => :ad_unit
     parameter :last_served_at, "Time at which ad unit was last served", :scope => :ad_unit
 
     example "Fetch least recently served ad unit" do
@@ -76,7 +79,8 @@ resource "Ad_Units" do
     parameter :active, "Active advertisement", :scope => :ad_unit
     parameter :user_id, "User ID", :scope => :ad_unit
     parameter :ad_format, "Advertisement format", :scope => :ad_unit
-    parameter :dimensions, "Advertisement dimensions", :scope => :ad_unit
+    parameter :aspect_ratio_width, "Width of aspect ratio", :scope => :ad_unit
+    parameter :aspect_ratio_height, "Height of aspect ratio", :scope => :ad_unit
     parameter :last_served_at, "Time at which ad unit was last served", :scope => :ad_unit
 
     example "Create a new ad unit" do

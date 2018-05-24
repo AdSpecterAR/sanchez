@@ -11,12 +11,17 @@ class AdUnitsController < ApplicationController
   end
 
   def fetch
-    @ad_unit = AdUnit.fetch(
-      ad_format: ad_unit_params[:ad_format],
-      dimensions: ad_unit_params[:dimensions]
-    )
+    if params[:ad_format] && params[:aspect_ratio_width] && params[:aspect_ratio_height]
+      @ad_unit = AdUnit.fetch(
+        ad_format: params[:ad_format],
+        aspect_ratio_width: params[:aspect_ratio_width],
+        aspect_ratio_height: params[:aspect_ratio_height]
+      )
 
-    render json: { ad_unit: AdUnitRepresenter.represent(@ad_unit) }
+      render json: { ad_unit: AdUnitRepresenter.represent(@ad_unit) }
+    else
+      render json: { error: "Missing parameters" }
+    end
   end
 
   def default
@@ -39,7 +44,8 @@ class AdUnitsController < ApplicationController
         :active,
         :last_served_at,
         :ad_format,
-        :dimensions,
+        :aspect_ratio_width,
+        :aspect_ratio_height,
         :user_id
       )
   end
