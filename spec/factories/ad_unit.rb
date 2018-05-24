@@ -10,7 +10,7 @@ FactoryBot.define do
     ad_format { AdUnit::FORMAT_VIDEO }
     last_served_at nil
     active true
-    video_length 0
+    video_length 1000
 
     trait :rewarded do
       rewarded true

@@ -32,7 +32,6 @@ class AdUnit < ApplicationRecord
 
   validates :title, :ad_unit_url, :aspect_ratio_width, :aspect_ratio_height, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
-  validates :dimensions, inclusion: VALID_DIMENSIONS, presence: true
   validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
 
   # TODO: validate aspect ratios
