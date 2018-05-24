@@ -14,7 +14,7 @@ describe ImpressionsController, type: :controller do
   def verify_impression_json(json, impression)
     expect(json[:id]).to eql impression.id
     expect(json[:ad_unit][:id]).to eql impression.ad_unit.id
-    expect(json[:developer_app][:id]).to eql impression.developer_app.id
+    expect(json[:developer_app_id]).to eql impression.developer_app.id
     expect(json[:app_session][:id]).to eql impression.app_session.id
     expect(json[:served]).to eql impression.served
     expect(json[:served_at].present?).to eql impression.served_at.present?

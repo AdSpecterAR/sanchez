@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20180523214823) do
     t.datetime "last_served_at"
     t.integer "aspect_ratio_width"
     t.integer "aspect_ratio_height"
+    t.boolean "rewarded"
+    t.boolean "interstitial"
+    t.integer "video_length"
     t.index ["user_id"], name: "index_ad_units_on_user_id"
   end
 
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(version: 20180523214823) do
     t.boolean "shown_for_30_seconds"
     t.bigint "app_session_id"
     t.bigint "ad_unit_id"
+    t.integer "interaction_length"
     t.index ["ad_unit_id"], name: "index_impressions_on_ad_unit_id"
     t.index ["app_session_id"], name: "index_impressions_on_app_session_id"
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"

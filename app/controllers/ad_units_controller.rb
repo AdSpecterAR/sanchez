@@ -46,7 +46,10 @@ class AdUnitsController < ApplicationController
         :ad_format,
         :aspect_ratio_width,
         :aspect_ratio_height,
-        :user_id
+        :user_id,
+        :rewarded,
+        :interstitial,
+        :video_length
       )
   end
 end

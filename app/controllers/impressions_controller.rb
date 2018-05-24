@@ -44,7 +44,6 @@ class ImpressionsController < ApplicationController
     end
   end
 
-
   protected
 
   def render_impression_response(impression)
@@ -68,7 +67,8 @@ class ImpressionsController < ApplicationController
         :shown,
         :served_at,
         :shown_at,
-        :clicked_at
+        :clicked_at,
+        :interaction_length
       )
   end
 end
