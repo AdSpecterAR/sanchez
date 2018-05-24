@@ -21,6 +21,16 @@ describe Impression, type: :model do
 
       expect(impression.ratio_interacted).to eql 0.5
     end
+
+    it "should not return a ratio without a video_length value" do
+      impression.ad_unit.update(rewarded: true)
+
+      expect(impression.ratio_interacted).to eql nil
+    end
+
+    it "should not return a ratio if ad_unit is not rewarded" do
+      expect(impression.ratio_interacted).to eql nil
+    end
   end
 
 
