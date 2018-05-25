@@ -23,8 +23,8 @@ describe Impression, type: :model do
     end
 
     it "should not return a ratio without a video_length value" do
-      impression.ad_unit.update(rewarded: true)
       impression.ad_unit.update(video_length: nil)
+      impression.ad_unit.update(rewarded: true, video_length: nil)
 
       expect(impression.ratio_interacted).to be_nil
     end

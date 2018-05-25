@@ -16,39 +16,33 @@ class AdUnit < ApplicationRecord
     FORMAT_PORTAL
   ]
 
-  DIMENSIONS_16_BY_9 = '16:9'
-  DIMENSIONS_4_BY_3 = '4:3'
-  DIMENSIONS_1_BY_1 = '1:1'
-  VALID_DIMENSIONS = [
-    DIMENSIONS_16_BY_9,
-    DIMENSIONS_4_BY_3,
-    DIMENSIONS_1_BY_1
-  ]
+  # TODO: Add valid aspect ratios
 
   ### SCOPES ###
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :rewarded, -> { where(rewarded: true) }
-  scope :unrewarded, -> { where(rewarded: false, rewarded: nil) }
+  scope :unrewarded, -> { where(rewarded: false) } #, rewarded: nil) }
   scope :interstitial, -> { where(interstitial: true) }
-  scope :noninterstitial, -> { where(interstitial: false, interstitial: nil) }
+  scope :noninterstitial, -> { where(interstitial: false) } #, interstitial: nil) }
 
 
   ### VALIDATIONS ###
 
-  validates :title, :ad_unit_url, :dimensions, presence: true
+  validates :title, :ad_unit_url, :aspect_ratio_width, :aspect_ratio_height, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
   validates :dimensions, inclusion: VALID_DIMENSIONS, presence: true
   validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
 
+  # TODO: validate aspect ratios
   class << self
     def default_ad_unit
       # TODO: change
       AdUnit.first
     end
 
-    def fetch_all(ad_format:, dimensions:)
+    def fetch_all(ad_format:, aspect_ratio_width:, aspect_ratio_height:)
       # TODO: if used directly from controller, add maximum
       # number of ads to query and revisit 'where'
       AdUnit
@@ -62,12 +56,21 @@ class AdUnit < ApplicationRecord
         .includes([:user])
         .where(
           ad_format: ad_format,
-          dimensions: dimensions
+          aspect_ratio_width: aspect_ratio_width,
+          aspect_ratio_height: aspect_ratio_height,
         )
     end
 
-    def fetch(ad_format:, dimensions:)
-      AdUnit.fetch_all(ad_format: ad_format, dimensions: dimensions).first
+    def fetch(ad_format:, aspect_ratio_width:, aspect_ratio_height:)
+      AdUnit.fetch_all(
+        ad_format: ad_format,
+        aspect_ratio_width: aspect_ratio_width,
+        aspect_ratio_height: aspect_ratio_height
+      ).take
     end
+  end
+
+  def dimensions
+    "#{aspect_ratio_width}:#{aspect_ratio_height}"
   end
 end
