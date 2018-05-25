@@ -23,16 +23,15 @@ class AdUnit < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :rewarded, -> { where(rewarded: true) }
-  scope :unrewarded, -> { where(rewarded: false) } #, rewarded: nil) }
+  scope :unrewarded, -> { where(rewarded: false).or(where(rewarded: nil)) }
   scope :interstitial, -> { where(interstitial: true) }
-  scope :noninterstitial, -> { where(interstitial: false) } #, interstitial: nil) }
+  scope :noninterstitial, -> { where(interstitial: false).or(where(interstitial: nil)) }
 
 
   ### VALIDATIONS ###
 
   validates :title, :ad_unit_url, :aspect_ratio_width, :aspect_ratio_height, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
-  validates :dimensions, inclusion: VALID_DIMENSIONS, presence: true
   validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
 
   # TODO: validate aspect ratios

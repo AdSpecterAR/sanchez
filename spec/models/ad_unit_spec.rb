@@ -29,7 +29,6 @@ describe AdUnit, type: :model do
   let!(:inactive_rewarded_ad_unit) do
     create :ad_unit,
            ad_format: AdUnit::FORMAT_VIDEO,
-           dimensions: AdUnit::DIMENSIONS_16_BY_9,
            last_served_at: Time.current,
            active: false,
            rewarded: true
@@ -37,11 +36,9 @@ describe AdUnit, type: :model do
   let!(:interstitial_ad_unit) do
     create :ad_unit,
            ad_format: AdUnit::FORMAT_VIDEO,
-           dimensions: AdUnit::DIMENSIONS_16_BY_9,
            last_served_at: Time.current,
            interstitial: true
   end
-  let!(:inactive_ad_unit) { create(:ad_unit, active: false) }
   let(:aspect_ratio_width) { 16 }
   let(:aspect_ratio_height) { 9 }
   let!(:rewarded_ad_unit) do
@@ -62,13 +59,13 @@ describe AdUnit, type: :model do
     it "should return only inactive ad units" do
       inactive_ad_units = AdUnit.inactive
 
-      expect(inactive_ad_units).to match_array [inactive_ad_unit, inactive_rewarded_ad_unit]
+      expect(inactive_ad_units).to match_array [inactive_ad_unit, inactive_rewarded_ad_unit, rewarded_ad_unit]
     end
 
     it "should return only rewarded ad units" do
       rewarded_ad_units = AdUnit.rewarded
 
-      expect(rewarded_ad_units).to match_array [inactive_rewarded_ad_unit]
+      expect(rewarded_ad_units).to match_array [inactive_rewarded_ad_unit, rewarded_ad_unit]
     end
 
     it "should return only unrewarded ad units" do
@@ -86,7 +83,7 @@ describe AdUnit, type: :model do
     it "should return all noninterstitial ad units" do
       noninterstitial_ad_units = AdUnit.noninterstitial
 
-      expect(noninterstitial_ad_units).to match_array [ad_unit, older_ad_unit, unserved_ad_unit, inactive_ad_unit, inactive_rewarded_ad_unit]
+      expect(noninterstitial_ad_units).to match_array [ad_unit, older_ad_unit, unserved_ad_unit, inactive_ad_unit, inactive_rewarded_ad_unit, rewarded_ad_unit]
     end
   end
 
