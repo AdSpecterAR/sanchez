@@ -30,9 +30,9 @@ class AdUnit < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :rewarded, -> { where(rewarded: true) }
-  scope :unrewarded, -> { where(rewarded: false) }
+  scope :unrewarded, -> { where(rewarded: false, rewarded: nil) }
   scope :interstitial, -> { where(interstitial: true) }
-  scope :noninterstitial, -> { where(interstitial: false) }
+  scope :noninterstitial, -> { where(interstitial: false, interstitial: nil) }
 
 
   ### VALIDATIONS ###

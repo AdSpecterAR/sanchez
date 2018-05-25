@@ -10,21 +10,16 @@ class Impression < ApplicationRecord
   ### VALIDATIONS ###
 
   def ratio_interacted
-    if self.interaction_length == nil || self.ad_unit.video_length == nil || self.ad_unit.video_length <= 0
-      return nil
-    end
+    return nil if self.interaction_length == nil || self.ad_unit.video_length == nil || self.ad_unit.video_length <= 0
 
     if self.ad_unit.rewarded
-      return self.interaction_length.to_f / self.ad_unit.video_length.to_f
-    else
-      return nil
+      self.interaction_length.to_f / self.ad_unit.video_length.to_f
     end
   end
 
   def serve_ad_unit(time)
     self.ad_unit.update_attributes(title: 'yo')
   end
-
 end
 
 # DESIRED
