@@ -21,5 +21,6 @@ FactoryBot.define do
       clicked true
       clicked_at Time.current
     end
+
   end
 end

@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20180523214823) do
     t.bigint "user_id"
     t.string "ad_format"
     t.datetime "last_served_at"
-    t.integer "aspect_ratio_width"
-    t.integer "aspect_ratio_height"
     t.boolean "rewarded"
     t.boolean "interstitial"
     t.integer "video_length"
+    t.integer "aspect_ratio_width"
+    t.integer "aspect_ratio_height"
     t.index ["user_id"], name: "index_ad_units_on_user_id"
   end
 

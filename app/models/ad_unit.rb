@@ -23,9 +23,9 @@ class AdUnit < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :rewarded, -> { where(rewarded: true) }
-  scope :unrewarded, -> { where(rewarded: false) }
+  scope :unrewarded, -> { where(rewarded: false).or(where(rewarded: nil)) }
   scope :interstitial, -> { where(interstitial: true) }
-  scope :noninterstitial, -> { where(interstitial: false) }
+  scope :noninterstitial, -> { where(interstitial: false).or(where(interstitial: nil)) }
 
 
   ### VALIDATIONS ###
@@ -35,7 +35,6 @@ class AdUnit < ApplicationRecord
   validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
 
   # TODO: validate aspect ratios
-  #
   class << self
     def default_ad_unit
       # TODO: change

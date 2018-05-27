@@ -6,23 +6,39 @@ describe AdUnit, type: :model do
            :wide,
            ad_format: AdUnit::FORMAT_IMAGE,
            last_served_at: Time.current,
-           active: true
+           active: true,
+           rewarded: false
   end
   let!(:older_ad_unit) do
     create :ad_unit,
            :wide,
            ad_format: AdUnit::FORMAT_IMAGE,
            last_served_at: 1.day.ago,
-           active: true
+           active: true,
+           rewarded: false
   end
   let!(:unserved_ad_unit) do
     create :ad_unit,
            :wide,
            ad_format: AdUnit::FORMAT_IMAGE,
            last_served_at: nil,
-           active: true
+           active: true,
+           rewarded: false
   end
-  let!(:inactive_ad_unit) { create(:ad_unit, active: false) }
+  let!(:inactive_ad_unit) { create(:ad_unit, active: false, rewarded: false) }
+  let!(:inactive_rewarded_ad_unit) do
+    create :ad_unit,
+           ad_format: AdUnit::FORMAT_VIDEO,
+           last_served_at: Time.current,
+           active: false,
+           rewarded: true
+  end
+  let!(:interstitial_ad_unit) do
+    create :ad_unit,
+           ad_format: AdUnit::FORMAT_VIDEO,
+           last_served_at: Time.current,
+           interstitial: true
+  end
   let(:aspect_ratio_width) { 16 }
   let(:aspect_ratio_height) { 9 }
   let!(:rewarded_ad_unit) do
@@ -37,7 +53,37 @@ describe AdUnit, type: :model do
     it "should return only active ad units" do
       active_ad_units = AdUnit.active
 
-      expect(active_ad_units).to match_array [ad_unit, older_ad_unit, unserved_ad_unit]
+      expect(active_ad_units).to match_array [ad_unit, older_ad_unit, unserved_ad_unit, interstitial_ad_unit]
+    end
+
+    it "should return only inactive ad units" do
+      inactive_ad_units = AdUnit.inactive
+
+      expect(inactive_ad_units).to match_array [inactive_ad_unit, inactive_rewarded_ad_unit, rewarded_ad_unit]
+    end
+
+    it "should return only rewarded ad units" do
+      rewarded_ad_units = AdUnit.rewarded
+
+      expect(rewarded_ad_units).to match_array [inactive_rewarded_ad_unit, rewarded_ad_unit]
+    end
+
+    it "should return only unrewarded ad units" do
+      unrewarded_ad_units = AdUnit.unrewarded
+
+      expect(unrewarded_ad_units).to match_array [ad_unit, older_ad_unit, unserved_ad_unit, inactive_ad_unit, interstitial_ad_unit]
+    end
+
+    it "should return only interstitial ad units" do
+      interstitial_ad_units = AdUnit.interstitial
+
+      expect(interstitial_ad_units).to match_array [interstitial_ad_unit]
+    end
+
+    it "should return all noninterstitial ad units" do
+      noninterstitial_ad_units = AdUnit.noninterstitial
+
+      expect(noninterstitial_ad_units).to match_array [ad_unit, older_ad_unit, unserved_ad_unit, inactive_ad_unit, inactive_rewarded_ad_unit, rewarded_ad_unit]
     end
   end
 
@@ -60,6 +106,16 @@ describe AdUnit, type: :model do
       rewarded_ad_unit.update(ad_format: AdUnit::FORMAT_IMAGE)
 
       expect(rewarded_ad_unit).not_to be_valid
+    end
+
+    it "should return a valid rewarded ad unit" do
+      expect(inactive_rewarded_ad_unit).to be_valid
+    end
+
+    it "should not return a valid rewarded ad unit without video format" do
+      inactive_rewarded_ad_unit.update(ad_format: AdUnit::FORMAT_IMAGE)
+
+      expect(inactive_rewarded_ad_unit).not_to be_valid
     end
   end
 

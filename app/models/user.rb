@@ -25,7 +25,8 @@ class User < ApplicationRecord
 
   ### VALIDATIONS ###
 
-  # validates :first_name, :last_name, :email, presence: true
+  validates :first_name, :last_name, :email, presence: true
+  validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   # validate :password_valid
   # validate :email_presence
   # validate :unique_email
