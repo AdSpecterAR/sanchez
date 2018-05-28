@@ -14,7 +14,7 @@ describe AdUnitsController, type: :controller do
       aspect_ratio_height: ad_unit.aspect_ratio_height,
       last_served_at: ad_unit.last_served_at,
       user_id: ad_unit.user.id,
-      click_to_action: ad_unit.click_to_action
+      call_to_action: ad_unit.call_to_action
     }
   end
 

@@ -52,7 +52,7 @@ class AdUnitsController < ApplicationController
         :video_length,
         :click_url_android,
         :click_url_ios,
-        :click_to_action
+        :call_to_action
       )
   end
 end

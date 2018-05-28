@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20180527204805) do
     t.integer "video_length"
     t.string "click_url_android"
     t.string "click_url_ios"
-    t.string "click_to_action"
+    t.string "call_to_action"
     t.index ["user_id"], name: "index_ad_units_on_user_id"
   end
 

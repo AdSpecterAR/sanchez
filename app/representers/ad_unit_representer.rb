@@ -24,5 +24,5 @@ class AdUnitRepresenter < Representable::Decorator
   property :video_length
   property :click_url_android
   property :click_url_ios
-  property :click_to_action
+  property :call_to_action
 end

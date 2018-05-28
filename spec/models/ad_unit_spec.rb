@@ -62,8 +62,8 @@ describe AdUnit, type: :model do
       expect(rewarded_ad_unit).not_to be_valid
     end
 
-    it "should not return a valid ad unit without a valid click_to_action" do
-      ad_unit.update(click_to_action: '')
+    it "should not return a valid ad unit without a valid call to action" do
+      ad_unit.update(call_to_action: '')
 
       expect(ad_unit).not_to be_valid
     end

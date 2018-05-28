@@ -11,7 +11,7 @@ FactoryBot.define do
     last_served_at nil
     active true
     video_length 1000
-    click_to_action 'no button'
+    call_to_action 'no button'
 
     trait :rewarded do
       rewarded true

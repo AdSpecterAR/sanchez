@@ -24,7 +24,7 @@ class AdUnit < ApplicationRecord
   CTA_SUBSCRIBE = 'subscribe'
   CTA_WATCH_MORE = 'watch more'
   CTA_NO_BUTTON = 'no button'
-  VALID_CLICKS_TO_ACTION = [
+  VALID_CALLS_TO_ACTION = [
     CTA_LEARN_MORE,
     CTA_DOWNLOAD,
     CTA_GET_OFFER,
@@ -53,7 +53,7 @@ class AdUnit < ApplicationRecord
   validates :title, :ad_unit_url, :aspect_ratio_width, :aspect_ratio_height, :click_url_default, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
   validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
-  validates :click_to_action, inclusion: VALID_CLICKS_TO_ACTION, presence: true
+  validates :call_to_action, inclusion: VALID_CALLS_TO_ACTION, presence: true
 
   # TODO: validate aspect ratios
   #
