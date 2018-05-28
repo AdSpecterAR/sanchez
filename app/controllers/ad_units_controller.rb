@@ -39,7 +39,7 @@ class AdUnitsController < ApplicationController
       .permit(
         :title,
         :description,
-        :click_url,
+        :click_url_default,
         :ad_unit_url,
         :active,
         :last_served_at,
@@ -49,7 +49,10 @@ class AdUnitsController < ApplicationController
         :user_id,
         :rewarded,
         :interstitial,
-        :video_length
+        :video_length,
+        :click_url_android,
+        :click_url_ios,
+        :click_to_action
       )
   end
 end

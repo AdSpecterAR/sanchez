@@ -3,7 +3,7 @@ FactoryBot.define do
     user
     title { Faker::Lorem.sentence }
     description { Faker::Lorem.sentence }
-    click_url { Faker::Internet.url }
+    click_url_default { Faker::Internet.url }
     ad_unit_url { Faker::Internet.url }
     aspect_ratio_width { 16 }
     aspect_ratio_height { 9 }
@@ -11,6 +11,7 @@ FactoryBot.define do
     last_served_at nil
     active true
     video_length 1000
+    click_to_action 'no button'
 
     trait :rewarded do
       rewarded true

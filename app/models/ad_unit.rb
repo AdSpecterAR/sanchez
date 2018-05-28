@@ -15,6 +15,26 @@ class AdUnit < ApplicationRecord
     FORMAT_VIDEO,
     FORMAT_PORTAL
   ]
+  CTA_LEARN_MORE = 'learn more'
+  CTA_DOWNLOAD = 'download'
+  CTA_GET_OFFER = 'get offer'
+  CTA_PLAY_GAME = 'play game'
+  CTA_SHOP_NOW = 'shop now'
+  CTA_SIGN_UP = 'sign_up'
+  CTA_SUBSCRIBE = 'subscribe'
+  CTA_WATCH_MORE = 'watch more'
+  CTA_NO_BUTTON = 'no button'
+  VALID_CLICKS_TO_ACTION = [
+    CTA_LEARN_MORE,
+    CTA_DOWNLOAD,
+    CTA_GET_OFFER,
+    CTA_PLAY_GAME,
+    CTA_SHOP_NOW,
+    CTA_SIGN_UP,
+    CTA_SUBSCRIBE,
+    CTA_WATCH_MORE,
+    CTA_NO_BUTTON
+  ]
 
   # TODO: Add valid aspect ratios
 
@@ -30,9 +50,10 @@ class AdUnit < ApplicationRecord
 
   ### VALIDATIONS ###
 
-  validates :title, :ad_unit_url, :aspect_ratio_width, :aspect_ratio_height, presence: true
+  validates :title, :ad_unit_url, :aspect_ratio_width, :aspect_ratio_height, :click_url_default, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
   validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
+  validates :click_to_action, inclusion: VALID_CLICKS_TO_ACTION, presence: true
 
   # TODO: validate aspect ratios
   #

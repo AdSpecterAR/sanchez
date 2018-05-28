@@ -6,14 +6,15 @@ describe AdUnitsController, type: :controller do
     {
       title: ad_unit.title,
       description: ad_unit.description,
-      click_url: ad_unit.click_url,
-      ad_unit_url: ad_unit.click_url,
+      click_url_default: ad_unit.click_url_default,
+      ad_unit_url: ad_unit.click_url_default,
       active: true,
       ad_format: ad_unit.ad_format,
       aspect_ratio_width: ad_unit.aspect_ratio_width,
       aspect_ratio_height: ad_unit.aspect_ratio_height,
       last_served_at: ad_unit.last_served_at,
-      user_id: ad_unit.user.id
+      user_id: ad_unit.user.id,
+      click_to_action: ad_unit.click_to_action
     }
   end
 
@@ -25,7 +26,7 @@ describe AdUnitsController, type: :controller do
     expect(json[:id]).to eql ad_unit.id
     expect(json[:title]).to eql ad_unit.title
     expect(json[:description]).to eql ad_unit.description
-    expect(json[:click_url]).to eql ad_unit.click_url
+    expect(json[:click_url_default]).to eql ad_unit.click_url_default
     expect(json[:ad_unit_url]).to eql ad_unit.ad_unit_url
     expect(json[:active]).to eql ad_unit.active
     expect(json[:last_served_at]).to eql ad_unit.last_served_at

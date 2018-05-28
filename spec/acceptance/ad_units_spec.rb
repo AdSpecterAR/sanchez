@@ -8,14 +8,15 @@ resource "Ad_Units" do
     {
       title: ad_unit.title,
       description: ad_unit.description,
-      click_url: ad_unit.click_url,
-      ad_unit_url: ad_unit.click_url,
+      click_url_default: ad_unit.click_url_default,
+      ad_unit_url: ad_unit.click_url_default,
       active: true,
       user_id: ad_unit.user.id,
       ad_format: AdUnit::FORMAT_IMAGE,
       aspect_ratio_width: 16,
       aspect_ratio_height: 9,
-      last_served_at: Time.current
+      last_served_at: Time.current,
+      click_to_action: ad_unit.click_to_action
     }
   end
   let!(:ad_unit) do
@@ -31,7 +32,7 @@ resource "Ad_Units" do
     parameter :ad_unit, :required => true
     parameter :title, "Advertisement title", :scope => :ad_unit
     parameter :description, "Advertisement description", :scope => :ad_unit
-    parameter :click_url, "Click URL", :scope => :ad_unit
+    parameter :click_url_default, "Click URL", :scope => :ad_unit
     parameter :ad_unit_url, "Advetisement URL", :scope => :ad_unit
     parameter :active, "Active advertisement", :scope => :ad_unit
     parameter :user_id, "User ID", :scope => :ad_unit
@@ -53,7 +54,7 @@ resource "Ad_Units" do
     parameter :ad_unit, :required => true
     parameter :title, "Advertisement title", :scope => :ad_unit
     parameter :description, "Advertisement description", :scope => :ad_unit
-    parameter :click_url, "Click URL", :scope => :ad_unit
+    parameter :click_url_default, "Click URL", :scope => :ad_unit
     parameter :ad_unit_url, "Advetisement URL", :scope => :ad_unit
     parameter :active, "Active advertisement", :scope => :ad_unit
     parameter :user_id, "User ID", :scope => :ad_unit
@@ -74,7 +75,7 @@ resource "Ad_Units" do
     parameter :ad_unit, :required => true
     parameter :title, "Advertisement title", :scope => :ad_unit
     parameter :description, "Advertisement description", :scope => :ad_unit
-    parameter :click_url, "Click URL", :scope => :ad_unit
+    parameter :click_url_default, "Click URL", :scope => :ad_unit
     parameter :ad_unit_url, "Advetisement URL", :scope => :ad_unit
     parameter :active, "Active advertisement", :scope => :ad_unit
     parameter :user_id, "User ID", :scope => :ad_unit

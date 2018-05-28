@@ -8,7 +8,7 @@ class AdUnitRepresenter < Representable::Decorator
   property :id
   property :title
   property :description
-  property :click_url
+  property :click_url_default
   property :ad_unit_url
   property :active
   property :ad_format
@@ -22,4 +22,7 @@ class AdUnitRepresenter < Representable::Decorator
   property :rewarded
   property :interstitial
   property :video_length
+  property :click_url_android
+  property :click_url_ios
+  property :click_to_action
 end

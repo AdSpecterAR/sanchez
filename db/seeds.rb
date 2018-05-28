@@ -18,7 +18,7 @@ p 'Created a User'
 AdUnit.create(
   title: 'default',
   description: 'default ad for testing',
-  click_url: 'https://www.adspecter.com',
+  click_url_default: 'https://www.adspecter.com',
   ad_unit_url: 'https://naotw-pd.s3.amazonaws.com/coke_holiday_ooh_aotw.jpg',
   active: true,
   user_id: 1
