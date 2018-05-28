@@ -51,7 +51,7 @@ describe AdUnitsController, type: :controller do
 
   describe "#fetch" do
     it "fetches the least recently served ad_unit" do
-      get :fetch, params: ad_unit_params, format: :json
+      get :fetch, params: ad_unit_params
 
       expect(response).to be_success
 

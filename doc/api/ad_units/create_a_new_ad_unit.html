@@ -152,7 +152,7 @@ table th, table td {
               </tr>
               <tr>
                 <td>
-                    <span class="name">ad_unit[click_url]</span>
+                    <span class="name">ad_unit[click_url_default]</span>
                 </td>
                 <td>
                   <span class="description">Click URL</span>
@@ -163,7 +163,7 @@ table th, table td {
                     <span class="name">ad_unit[ad_unit_url]</span>
                 </td>
                 <td>
-                  <span class="description">Advetisement URL</span>
+                  <span class="description">Advertisement URL</span>
                 </td>
               </tr>
               <tr>
@@ -192,10 +192,18 @@ table th, table td {
               </tr>
               <tr>
                 <td>
-                    <span class="name">ad_unit[dimensions]</span>
+                    <span class="name">ad_unit[aspect_ratio_width]</span>
                 </td>
                 <td>
-                  <span class="description">Advertisement dimensions</span>
+                  <span class="description">Width of aspect ratio</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[aspect_ratio_height]</span>
+                </td>
+                <td>
+                  <span class="description">Height of aspect ratio</span>
                 </td>
               </tr>
               <tr>
@@ -204,6 +212,30 @@ table th, table td {
                 </td>
                 <td>
                   <span class="description">Time at which ad unit was last served</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[click_url_android]</span>
+                </td>
+                <td>
+                  <span class="description">Android mobile deep link</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[click_url_ios]</span>
+                </td>
+                <td>
+                  <span class="description">iOS mobile deep link</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[call_to_action]</span>
+                </td>
+                <td>
+                  <span class="description">Call to action engagement</span>
                 </td>
               </tr>
             </tbody>
@@ -222,45 +254,53 @@ Cookie: </pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">ad_unit[title]=Impedit+blanditiis+corrupti+et+autem+rerum+cum+commodi.&ad_unit[description]=Quisquam+eius+praesentium+porro+qui+ea+ex.&ad_unit[click_url]=http%3A%2F%2Fschmidt.net%2Fdevan&ad_unit[ad_unit_url]=http%3A%2F%2Fschmidt.net%2Fdevan&ad_unit[active]=true&ad_unit[user_id]=871&ad_unit[ad_format]=image&ad_unit[dimensions]=16%3A9&ad_unit[last_served_at]=2018-05-21+04%3A10%3A37+UTC</pre>
+            <pre class="request body">ad_unit[title]=Reprehenderit+autem+iure+distinctio+maxime+repellendus.&ad_unit[description]=Voluptatum+et+aut+consectetur+iure+quia+facere+corrupti+labore.&ad_unit[click_url_default]=http%3A%2F%2Frowe.net%2Fcleora&ad_unit[ad_unit_url]=http%3A%2F%2Frowe.net%2Fcleora&ad_unit[active]=true&ad_unit[user_id]=1146&ad_unit[ad_format]=image&ad_unit[aspect_ratio_width]=16&ad_unit[aspect_ratio_height]=9&ad_unit[last_served_at]=2018-05-28+21%3A33%3A17+UTC&ad_unit[click_url_android]=https%3A%2F%2Fwww.android.com%2F&ad_unit[click_url_ios]=https%3A%2F%2Fwww.apple.com%2F&ad_unit[call_to_action]=No+Button</pre>
 
 
             <h3>Response</h3>
               <h4>Headers</h4>
               <pre class="response headers">Content-Type: application/json; charset=utf-8
-ETag: W/&quot;ad80160e93b42fca4e4497c3c31cca52&quot;
+ETag: W/&quot;487bb268ce0ea92ce695575895ad3ef0&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 5a917c60-4906-4000-94d9-a25fa8df53ce
-X-Runtime: 0.010894
+X-Request-Id: cae7838e-32ab-4511-afe9-267071c3af55
+X-Runtime: 0.035983
 Vary: Origin
-Content-Length: 683</pre>
+Content-Length: 922</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;ad_unit&quot;: {
-    &quot;id&quot;: 601,
-    &quot;title&quot;: &quot;Impedit blanditiis corrupti et autem rerum cum commodi.&quot;,
-    &quot;description&quot;: &quot;Quisquam eius praesentium porro qui ea ex.&quot;,
-    &quot;click_url&quot;: &quot;http://schmidt.net/devan&quot;,
-    &quot;ad_unit_url&quot;: &quot;http://schmidt.net/devan&quot;,
+    &quot;id&quot;: 851,
+    &quot;title&quot;: &quot;Reprehenderit autem iure distinctio maxime repellendus.&quot;,
+    &quot;description&quot;: &quot;Voluptatum et aut consectetur iure quia facere corrupti labore.&quot;,
+    &quot;click_url_default&quot;: &quot;http://rowe.net/cleora&quot;,
+    &quot;ad_unit_url&quot;: &quot;http://rowe.net/cleora&quot;,
     &quot;active&quot;: true,
     &quot;ad_format&quot;: &quot;image&quot;,
     &quot;dimensions&quot;: &quot;16:9&quot;,
-    &quot;last_served_at&quot;: &quot;2018-05-21T04:10:37.000Z&quot;,
+    &quot;aspect_ratio_width&quot;: 16,
+    &quot;aspect_ratio_height&quot;: 9,
+    &quot;last_served_at&quot;: &quot;2018-05-28T21:33:17.000Z&quot;,
     &quot;user&quot;: {
-      &quot;id&quot;: 871,
-      &quot;first_name&quot;: &quot;Desmond&quot;,
-      &quot;last_name&quot;: &quot;Kovacek&quot;,
-      &quot;account_type&quot;: &quot;developer&quot;,
-      &quot;username&quot;: &quot;DesmondKovacek&quot;,
-      &quot;created_at&quot;: &quot;2018-05-21T04:10:37.175Z&quot;,
-      &quot;updated_at&quot;: &quot;2018-05-21T04:10:37.175Z&quot;,
-      &quot;email&quot;: &quot;turner@moorekreiger.org&quot;,
-      &quot;authentication_token&quot;: &quot;zHDktKsfPXHxt3b86qq3&quot;
+      &quot;id&quot;: 1146,
+      &quot;first_name&quot;: &quot;Merle&quot;,
+      &quot;last_name&quot;: &quot;Douglas&quot;,
+      &quot;account_type&quot;: &quot;advertiser&quot;,
+      &quot;username&quot;: &quot;MerleDouglas&quot;,
+      &quot;created_at&quot;: &quot;2018-05-28T21:33:17.709Z&quot;,
+      &quot;updated_at&quot;: &quot;2018-05-28T21:33:17.709Z&quot;,
+      &quot;email&quot;: &quot;ramona@hackett.org&quot;,
+      &quot;authentication_token&quot;: &quot;79k_7qZAPeGX9CBop1Aj&quot;
     },
-    &quot;created_at&quot;: &quot;2018-05-21T04:10:37.198Z&quot;,
-    &quot;updated_at&quot;: &quot;2018-05-21T04:10:37.198Z&quot;
+    &quot;created_at&quot;: &quot;2018-05-28T21:33:17.748Z&quot;,
+    &quot;updated_at&quot;: &quot;2018-05-28T21:33:17.748Z&quot;,
+    &quot;rewarded&quot;: null,
+    &quot;interstitial&quot;: null,
+    &quot;video_length&quot;: null,
+    &quot;click_url_android&quot;: &quot;https://www.android.com/&quot;,
+    &quot;click_url_ios&quot;: &quot;https://www.apple.com/&quot;,
+    &quot;call_to_action&quot;: &quot;No Button&quot;
   }
 }</pre>
       </div>

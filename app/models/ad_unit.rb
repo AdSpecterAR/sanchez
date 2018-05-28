@@ -15,15 +15,15 @@ class AdUnit < ApplicationRecord
     FORMAT_VIDEO,
     FORMAT_PORTAL
   ]
-  CTA_LEARN_MORE = 'learn more'
-  CTA_DOWNLOAD = 'download'
-  CTA_GET_OFFER = 'get offer'
-  CTA_PLAY_GAME = 'play game'
-  CTA_SHOP_NOW = 'shop now'
-  CTA_SIGN_UP = 'sign_up'
-  CTA_SUBSCRIBE = 'subscribe'
-  CTA_WATCH_MORE = 'watch more'
-  CTA_NO_BUTTON = 'no button'
+  CTA_LEARN_MORE = 'Learn More'
+  CTA_DOWNLOAD = 'Download'
+  CTA_GET_OFFER = 'Get Offer'
+  CTA_PLAY_GAME = 'Play Game'
+  CTA_SHOP_NOW = 'Shop Now'
+  CTA_SIGN_UP = 'Sign Up'
+  CTA_SUBSCRIBE = 'Subscribe'
+  CTA_WATCH_MORE = 'Watch More'
+  CTA_NO_BUTTON = 'No Button'
   VALID_CALLS_TO_ACTION = [
     CTA_LEARN_MORE,
     CTA_DOWNLOAD,

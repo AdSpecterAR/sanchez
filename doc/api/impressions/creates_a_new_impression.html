@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Impressions API</title>
+    <meta charset="utf-8">
+    <style>
+      
+body {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #404040;
+}
+
+.container {
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  zoom: 1;
+}
+
+pre {
+  background-color: #f5f5f5;
+  display: block;
+  padding: 8.5px;
+  margin: 0 0 18px;
+  line-height: 18px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+td.required .name:after {
+  float: right;
+  content: "required";
+  font-weight: normal;
+  color: #F08080;
+}
+
+a{
+  color: #0069d6;
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #404040;
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-size: 30px;
+  line-height: 36px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+}
+h3{
+  font-size: 18px;
+  line-height: 36px;
+}
+h4 {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+table{
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0;
+  border-collapse: separate;
+  font-size: 13px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+table th {
+  padding-top: 9px;
+  font-weight: bold;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+table th+th, table td+td {
+  border-left: 1px solid #ddd;
+}
+table th, table td {
+  padding: 10px 10px 9px;
+  line-height: 18px;
+  text-align: left;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Impressions API</h1>
+
+        <p class="explanation">Within an app session many advertisements may be served, each advertisement of which may receive multiple impressions.
+Impressions may be received, shown, and or clicked.</p>
+
+      <div class="article">
+        <h2>Creates a new impression</h2>
+        <h3>PUT /impressions</h3>
+          <p class="explanation">
+            This method creates a new impression.
+          </p>
+
+          <h3>Parameters</h3>
+          <table class="parameters table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="required">
+                    <span class="name">impression</span>
+                </td>
+                <td>
+                  <span class="description">Impression</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[ad_unit_id]</span>
+                </td>
+                <td>
+                  <span class="description">Ad unit</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[developer_app_id]</span>
+                </td>
+                <td>
+                  <span class="description">Developer App Id</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[app_session_id]</span>
+                </td>
+                <td>
+                  <span class="description">App Session Id</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[served]</span>
+                </td>
+                <td>
+                  <span class="description">Whether ad has been served</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[served_at]</span>
+                </td>
+                <td>
+                  <span class="description">When ad was served</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[shown]</span>
+                </td>
+                <td>
+                  <span class="description">Whether ad has been shown</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[show_at]</span>
+                </td>
+                <td>
+                  <span class="description">When ad was shown</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[clicked]</span>
+                </td>
+                <td>
+                  <span class="description">Whether ad was clicked</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">impression[clicked_at]</span>
+                </td>
+                <td>
+                  <span class="description">When ad was clicked</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <h3>Request</h3>
+
+            <h4>Headers</h4>
+            <pre class="request headers">Host: example.org
+Content-Type: application/x-www-form-urlencoded
+Cookie: </pre>
+
+          <h4>Route</h4>
+          <pre class="request route highlight">PUT /impressions</pre>
+
+
+            <h4>Body</h4>
+            <pre class="request body">impression[ad_unit_id]=853&impression[developer_app_id]=204&impression[app_session_id]=121&impression[served]=true&impression[served_at]=2018-05-28+14%3A33%3A17+-0700&impression[shown]=false&impression[shown_at]&impression[clicked]=false&impression[clicked_at]</pre>
+
+
+            <h3>Response</h3>
+              <h4>Headers</h4>
+              <pre class="response headers">Content-Type: application/json; charset=utf-8
+ETag: W/&quot;a0569c5781d273012a8445ae6cfe4699&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 109604d4-5b68-4f4b-b134-404ae4652949
+X-Runtime: 0.020320
+Vary: Origin
+Content-Length: 983</pre>
+            <h4>Status</h4>
+            <pre class="response status">200 OK</pre>
+              <h4>Body</h4>
+              <pre class="response body">{
+  &quot;impression&quot;: {
+    &quot;id&quot;: 156,
+    &quot;served&quot;: true,
+    &quot;served_at&quot;: &quot;2018-05-28T21:33:17.954Z&quot;,
+    &quot;shown&quot;: false,
+    &quot;shown_at&quot;: null,
+    &quot;clicked&quot;: false,
+    &quot;clicked_at&quot;: null,
+    &quot;developer_app_id&quot;: 204,
+    &quot;ad_unit&quot;: {
+      &quot;id&quot;: 853,
+      &quot;title&quot;: &quot;Et et quia rerum esse autem et.&quot;,
+      &quot;description&quot;: &quot;Ut illo harum explicabo.&quot;,
+      &quot;click_url_default&quot;: &quot;http://bashirian.net/annabell_marquardt&quot;,
+      &quot;ad_unit_url&quot;: &quot;http://hodkiewicz.org/hilbert&quot;,
+      &quot;active&quot;: true,
+      &quot;created_at&quot;: &quot;2018-05-28T21:33:17.942Z&quot;,
+      &quot;updated_at&quot;: &quot;2018-05-28T21:33:17.942Z&quot;,
+      &quot;user_id&quot;: 1150,
+      &quot;ad_format&quot;: &quot;video&quot;,
+      &quot;last_served_at&quot;: null,
+      &quot;aspect_ratio_width&quot;: 16,
+      &quot;aspect_ratio_height&quot;: 9,
+      &quot;rewarded&quot;: null,
+      &quot;interstitial&quot;: null,
+      &quot;video_length&quot;: 1000,
+      &quot;click_url_android&quot;: &quot;https://www.android.com/&quot;,
+      &quot;click_url_ios&quot;: &quot;https://www.apple.com/&quot;,
+      &quot;call_to_action&quot;: &quot;No Button&quot;
+    },
+    &quot;app_session&quot;: {
+      &quot;id&quot;: 121,
+      &quot;created_at&quot;: &quot;2018-05-28T21:33:17.933Z&quot;,
+      &quot;updated_at&quot;: &quot;2018-05-28T21:33:17.933Z&quot;,
+      &quot;developer_app_id&quot;: 204
+    },
+    &quot;created_at&quot;: &quot;2018-05-28T21:33:17.961Z&quot;,
+    &quot;updated_at&quot;: &quot;2018-05-28T21:33:17.961Z&quot;,
+    &quot;interaction_length&quot;: null
+  }
+}</pre>
+      </div>
+    </div>
+  </body>
+</html>

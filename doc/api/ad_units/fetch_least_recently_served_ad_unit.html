@@ -152,7 +152,7 @@ table th, table td {
               </tr>
               <tr>
                 <td>
-                    <span class="name">ad_unit[click_url]</span>
+                    <span class="name">ad_unit[click_url_default]</span>
                 </td>
                 <td>
                   <span class="description">Click URL</span>
@@ -163,7 +163,7 @@ table th, table td {
                     <span class="name">ad_unit[ad_unit_url]</span>
                 </td>
                 <td>
-                  <span class="description">Advetisement URL</span>
+                  <span class="description">Advertisement URL</span>
                 </td>
               </tr>
               <tr>
@@ -192,10 +192,18 @@ table th, table td {
               </tr>
               <tr>
                 <td>
-                    <span class="name">ad_unit[dimensions]</span>
+                    <span class="name">ad_unit[aspect_ratio_width]</span>
                 </td>
                 <td>
-                  <span class="description">Advertisement dimensions</span>
+                  <span class="description">Width of aspect ratio</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[aspect_ratio_height]</span>
+                </td>
+                <td>
+                  <span class="description">Height of aspect ratio</span>
                 </td>
               </tr>
               <tr>
@@ -204,6 +212,30 @@ table th, table td {
                 </td>
                 <td>
                   <span class="description">Time at which ad unit was last served</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[click_url_android]</span>
+                </td>
+                <td>
+                  <span class="description">Android mobile deep link</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[click_url_ios]</span>
+                </td>
+                <td>
+                  <span class="description">iOS mobile deep link</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">ad_unit[call_to_action]</span>
+                </td>
+                <td>
+                  <span class="description">Call to action engagement</span>
                 </td>
               </tr>
             </tbody>
@@ -217,49 +249,70 @@ table th, table td {
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">GET /ad_units/fetch?ad_unit[title]=Autem+ratione+dignissimos+qui+nemo+aut.&amp;ad_unit[description]=Facilis+quae+eum+voluptatem+tenetur+saepe+impedit.&amp;ad_unit[click_url]=http%3A%2F%2Fstromandoyle.net%2Fclara.crooks&amp;ad_unit[ad_unit_url]=http%3A%2F%2Fstromandoyle.net%2Fclara.crooks&amp;ad_unit[active]=true&amp;ad_unit[user_id]=869&amp;ad_unit[ad_format]=image&amp;ad_unit[dimensions]=16%3A9&amp;ad_unit[last_served_at]=2018-05-21+04%3A10%3A37+UTC</pre>
+          <pre class="request route highlight">GET /ad_units/fetch?ad_unit=%23%3CAdUnit%3A0x00007fd241dc1228%3E&amp;title=Nemo+impedit+dolorem+suscipit.&amp;description=Molestiae+animi+cum+aut+repudiandae+illum.&amp;click_url_default=http%3A%2F%2Frunte.biz%2Fretta_reilly&amp;ad_unit_url=http%3A%2F%2Frunte.biz%2Fretta_reilly&amp;active=true&amp;user_id=1145&amp;ad_format=image&amp;aspect_ratio_width=16&amp;aspect_ratio_height=9&amp;last_served_at=2018-05-28+21%3A33%3A17+UTC&amp;click_url_android=https%3A%2F%2Fwww.android.com%2F&amp;click_url_ios=https%3A%2F%2Fwww.apple.com%2F&amp;call_to_action=No+Button</pre>
 
             <h4>Query Parameters</h4>
-            <pre class="request query_parameters highlight">ad_unit: {&quot;title&quot;=&gt;&quot;Autem ratione dignissimos qui nemo aut.&quot;, &quot;description&quot;=&gt;&quot;Facilis quae eum voluptatem tenetur saepe impedit.&quot;, &quot;click_url&quot;=&gt;&quot;http://stromandoyle.net/clara.crooks&quot;, &quot;ad_unit_url&quot;=&gt;&quot;http://stromandoyle.net/clara.crooks&quot;, &quot;active&quot;=&gt;&quot;true&quot;, &quot;user_id&quot;=&gt;&quot;869&quot;, &quot;ad_format&quot;=&gt;&quot;image&quot;, &quot;dimensions&quot;=&gt;&quot;16:9&quot;, &quot;last_served_at&quot;=&gt;&quot;2018-05-21 04:10:37 UTC&quot;}</pre>
+            <pre class="request query_parameters highlight">ad_unit: #&lt;AdUnit:0x00007fd241dc1228&gt;
+title: Nemo impedit dolorem suscipit.
+description: Molestiae animi cum aut repudiandae illum.
+click_url_default: http://runte.biz/retta_reilly
+ad_unit_url: http://runte.biz/retta_reilly
+active: true
+user_id: 1145
+ad_format: image
+aspect_ratio_width: 16
+aspect_ratio_height: 9
+last_served_at: 2018-05-28 21:33:17 UTC
+click_url_android: https://www.android.com/
+click_url_ios: https://www.apple.com/
+call_to_action: No Button</pre>
 
 
 
             <h3>Response</h3>
               <h4>Headers</h4>
               <pre class="response headers">Content-Type: application/json; charset=utf-8
-ETag: W/&quot;a7751c9c79e4275a5bbfbc26c6dfa282&quot;
+ETag: W/&quot;c25fa8503e024cb97c644f67b5429336&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 2d7c8799-7352-44d0-a103-86b911877715
-X-Runtime: 0.010749
+X-Request-Id: e29e2935-922e-40bf-9404-1bea1d6c3bab
+X-Runtime: 0.013459
 Vary: Origin
-Content-Length: 679</pre>
+Content-Length: 897</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;ad_unit&quot;: {
-    &quot;id&quot;: 598,
-    &quot;title&quot;: &quot;Quisquam qui delectus dolore recusandae.&quot;,
-    &quot;description&quot;: &quot;Eum eveniet aliquid delectus est omnis.&quot;,
-    &quot;click_url&quot;: &quot;http://halvorson.com/valentine&quot;,
-    &quot;ad_unit_url&quot;: &quot;http://wolff.org/cleveland_yost&quot;,
+    &quot;id&quot;: 849,
+    &quot;title&quot;: &quot;Nemo impedit dolorem suscipit.&quot;,
+    &quot;description&quot;: &quot;Molestiae animi cum aut repudiandae illum.&quot;,
+    &quot;click_url_default&quot;: &quot;http://runte.biz/retta_reilly&quot;,
+    &quot;ad_unit_url&quot;: &quot;http://hyattmoore.net/marjorie_howe&quot;,
     &quot;active&quot;: true,
     &quot;ad_format&quot;: &quot;image&quot;,
     &quot;dimensions&quot;: &quot;16:9&quot;,
-    &quot;last_served_at&quot;: &quot;2018-05-20T04:10:37.147Z&quot;,
+    &quot;aspect_ratio_width&quot;: 16,
+    &quot;aspect_ratio_height&quot;: 9,
+    &quot;last_served_at&quot;: &quot;2018-05-28T21:33:17.668Z&quot;,
     &quot;user&quot;: {
-      &quot;id&quot;: 870,
-      &quot;first_name&quot;: &quot;Clair&quot;,
-      &quot;last_name&quot;: &quot;Smith&quot;,
+      &quot;id&quot;: 1145,
+      &quot;first_name&quot;: &quot;Alvina&quot;,
+      &quot;last_name&quot;: &quot;Nicolas&quot;,
       &quot;account_type&quot;: &quot;advertiser&quot;,
-      &quot;username&quot;: &quot;ClairSmith&quot;,
-      &quot;created_at&quot;: &quot;2018-05-21T04:10:37.151Z&quot;,
-      &quot;updated_at&quot;: &quot;2018-05-21T04:10:37.151Z&quot;,
-      &quot;email&quot;: &quot;mallie_greenfelder@ruecker.info&quot;,
-      &quot;authentication_token&quot;: &quot;bVfvrEw8SnSysEc7m-hE&quot;
+      &quot;username&quot;: &quot;AlvinaNicolas&quot;,
+      &quot;created_at&quot;: &quot;2018-05-28T21:33:17.675Z&quot;,
+      &quot;updated_at&quot;: &quot;2018-05-28T21:33:17.675Z&quot;,
+      &quot;email&quot;: &quot;rubye@johnson.net&quot;,
+      &quot;authentication_token&quot;: &quot;qTRm4etQiUSvF36W8JyL&quot;
     },
-    &quot;created_at&quot;: &quot;2018-05-21T04:10:37.154Z&quot;,
-    &quot;updated_at&quot;: &quot;2018-05-21T04:10:37.154Z&quot;
+    &quot;created_at&quot;: &quot;2018-05-28T21:33:17.679Z&quot;,
+    &quot;updated_at&quot;: &quot;2018-05-28T21:33:17.679Z&quot;,
+    &quot;rewarded&quot;: null,
+    &quot;interstitial&quot;: null,
+    &quot;video_length&quot;: 1000,
+    &quot;click_url_android&quot;: &quot;https://www.android.com/&quot;,
+    &quot;click_url_ios&quot;: &quot;https://www.apple.com/&quot;,
+    &quot;call_to_action&quot;: &quot;No Button&quot;
   }
 }</pre>
       </div>

@@ -11,7 +11,10 @@ FactoryBot.define do
     last_served_at nil
     active true
     video_length 1000
-    call_to_action 'no button'
+    call_to_action 'No Button'
+    click_url_android 'https://www.android.com/'
+    click_url_ios 'https://www.apple.com/'
+
 
     trait :rewarded do
       rewarded true

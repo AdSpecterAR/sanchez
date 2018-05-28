@@ -10,6 +10,7 @@ class AdUnitsController < ApplicationController
     end
   end
 
+  # this uses query params not JSON params
   def fetch
     if params[:ad_format] && params[:aspect_ratio_width] && params[:aspect_ratio_height]
       @ad_unit = AdUnit.fetch(
