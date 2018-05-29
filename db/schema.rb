@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180523214823) do
+ActiveRecord::Schema.define(version: 20180527204805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20180523214823) do
   create_table "ad_units", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "click_url"
+    t.string "click_url_default"
     t.string "ad_unit_url"
     t.boolean "active"
     t.datetime "created_at", null: false
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20180523214823) do
     t.boolean "rewarded"
     t.boolean "interstitial"
     t.integer "video_length"
+    t.string "click_url_android"
+    t.string "click_url_ios"
+    t.string "call_to_action"
     t.index ["user_id"], name: "index_ad_units_on_user_id"
   end
 
