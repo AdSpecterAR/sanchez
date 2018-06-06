@@ -44,6 +44,13 @@ class ImpressionsController < ApplicationController
     end
   end
 
+  def app_install
+    puts "******************************"
+    puts "install callback successful!!!"
+    puts params
+    puts "******************************"
+  end
+
   protected
 
   def render_impression_response(impression)

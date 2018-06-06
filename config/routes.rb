@@ -40,6 +40,10 @@ Rails.application.routes.draw do
   put "/developer_app/authenticate" => "developer_apps#authenticate"
   post "/developer_app/authenticate" => "developer_apps#authenticate"
 
+  ### ATTRIBUTION ###
+
+  post "/postback/:attribution_partner/install" => "impressions#app_install"
+
   ### TEST ###
 
   root to: "tests#index"
