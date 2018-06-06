@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   ### ATTRIBUTION ###
 
-  post "/postback/:attribution_partner/install" => "impressions#app_install"
+  get "/postback/:attribution_partner/install" => "impressions#app_install"
 
   ### TEST ###
 
