@@ -19,7 +19,15 @@ class AdUnitsController < ApplicationController
         aspect_ratio_height: params[:aspect_ratio_height]
       )
 
-      render json: { ad_unit: AdUnitRepresenter.represent(@ad_unit) }
+      impression = @ad_unit.impressions.create(
+        app_session_id: params[:app_session_id],
+        developer_app_id: params[:developer_app_id]
+      )
+
+      render json: {
+        ad_unit: AdUnitRepresenter.represent(@ad_unit),
+        impression_id: impression.id
+      }
     else
       render json: { error: "Missing parameters" }
     end
