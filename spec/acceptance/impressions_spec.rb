@@ -21,43 +21,43 @@ resource "Impressions" do
     }
   end
 	
-  post "/impressions" do
-    parameter :impression, "Impression", :required => true
-    parameter :ad_unit_id, "Ad unit", :scope => :impression
-    parameter :developer_app_id, "Developer App Id", :scope => :impression
-    parameter :app_session_id, "App Session Id", :scope => :impression
-    parameter :served, "Whether ad has been served", :scope => :impression
-    parameter :served_at, "When ad was served", :scope => :impression
-    parameter :shown, "Whether ad has been shown", :scope => :impression
-    parameter :show_at, "When ad was shown", :scope => :impression
-    parameter :clicked, "Whether ad was clicked", :scope => :impression
-    parameter :clicked_at, "When ad was clicked", :scope => :impression
-
-    example "Creates a new impression" do
-      explanation "This method creates a new impression."
-      do_request(:impression => impression_params)
-
-      status.should == 200
-    end
-  end
-
-  put "/impressions" do
-    parameter :impression, "Impression", :required => true
-    parameter :ad_unit_id, "Ad unit", :scope => :impression
-    parameter :developer_app_id, "Developer App Id", :scope => :impression
-    parameter :app_session_id, "App Session Id", :scope => :impression
-    parameter :served, "Whether ad has been served", :scope => :impression
-    parameter :served_at, "When ad was served", :scope => :impression
-    parameter :shown, "Whether ad has been shown", :scope => :impression
-    parameter :show_at, "When ad was shown", :scope => :impression
-    parameter :clicked, "Whether ad was clicked", :scope => :impression
-    parameter :clicked_at, "When ad was clicked", :scope => :impression
-
-    example "Creates a new impression" do
-      explanation "This method creates a new impression."
-      do_request(:impression => impression_params)
-
-      status.should == 200
-    end
-  end
+  # post "/impressions" do
+  #   parameter :impression, "Impression", :required => true
+  #   parameter :ad_unit_id, "Ad unit", :scope => :impression
+  #   parameter :developer_app_id, "Developer App Id", :scope => :impression
+  #   parameter :app_session_id, "App Session Id", :scope => :impression
+  #   parameter :served, "Whether ad has been served", :scope => :impression
+  #   parameter :served_at, "When ad was served", :scope => :impression
+  #   parameter :shown, "Whether ad has been shown", :scope => :impression
+  #   parameter :show_at, "When ad was shown", :scope => :impression
+  #   parameter :clicked, "Whether ad was clicked", :scope => :impression
+  #   parameter :clicked_at, "When ad was clicked", :scope => :impression
+  #
+  #   example "Creates a new impression" do
+  #     explanation "This method creates a new impression."
+  #     do_request(:impression => impression_params)
+  #
+  #     status.should == 200
+  #   end
+  # end
+  #
+  # put "/impressions" do
+  #   parameter :impression, "Impression", :required => true
+  #   parameter :ad_unit_id, "Ad unit", :scope => :impression
+  #   parameter :developer_app_id, "Developer App Id", :scope => :impression
+  #   parameter :app_session_id, "App Session Id", :scope => :impression
+  #   parameter :served, "Whether ad has been served", :scope => :impression
+  #   parameter :served_at, "When ad was served", :scope => :impression
+  #   parameter :shown, "Whether ad has been shown", :scope => :impression
+  #   parameter :show_at, "When ad was shown", :scope => :impression
+  #   parameter :clicked, "Whether ad was clicked", :scope => :impression
+  #   parameter :clicked_at, "When ad was clicked", :scope => :impression
+  #
+  #   example "Creates a new impression" do
+  #     explanation "This method creates a new impression."
+  #     do_request(:impression => impression_params)
+  #
+  #     status.should == 200
+  #   end
+  # end
 end

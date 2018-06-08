@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180606223702) do
+ActiveRecord::Schema.define(version: 20180608183614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 20180606223702) do
     t.integer "interaction_length"
     t.string "idfa"
     t.string "country"
+    t.boolean "installed"
+    t.datetime "installed_at"
     t.index ["ad_unit_id"], name: "index_impressions_on_ad_unit_id"
     t.index ["app_session_id"], name: "index_impressions_on_app_session_id"
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"
