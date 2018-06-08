@@ -6,7 +6,12 @@ describe ImpressionsController, type: :controller do
   let(:developer_app) { create(:developer_app) }
   let(:app_session) { create(:app_session, developer_app: developer_app) }
   let(:impression) { create(:impression, app_session: app_session, developer_app: developer_app) }
-
+  let(:impression_attribution_params) do
+    {
+      impression_id: impression.id,
+      attribution_partner: "adjust"
+    }
+  end
   before do
     Timecop.freeze(Time.current)
   end
@@ -17,58 +22,31 @@ describe ImpressionsController, type: :controller do
     expect(json[:developer_app_id]).to eql impression.developer_app.id
     expect(json[:app_session][:id]).to eql impression.app_session.id
     expect(json[:served]).to eql impression.served
-    expect(json[:served_at].present?).to eql impression.served_at.present?
     expect(json[:shown]).to eql impression.shown
-    expect(json[:shown_at].present?).to eql impression.shown_at.present?
     expect(json[:clicked]).to eql impression.clicked
-    expect(json[:clicked_at].present?).to eql impression.clicked_at.present?
-  end
+    expect(json[:installed]).to eql impression.installed
+    expect(json[:interaction_length]).to eql impression.interaction_length
 
-  describe "#create" do
-    it "creates a new impression" do
-      impression_params = {
-        ad_unit_id: impression.ad_unit.id,
-        developer_app_id: impression.developer_app.id,
-        app_session_id: impression.app_session.id,
-        served: true,
-        served_at: Time.now,
-        shown: false,
-        shown_at: nil,
-        clicked: false,
-        clicked_at: nil,
-      }
+    if json[:served_at]
+      expect(json[:served_at]).to eql impression.served_at.iso8601(3)
+    end
 
-      post :create, params: { impression: impression_params }, format: :json
+    if json[:shown_at]
+      expect(json[:shown_at]).to eql impression.shown_at.iso8601(3)
+    end
 
-      expect(response).to be_success
+    if json[:clicked_at]
+      expect(json[:clicked_at]).to eql impression.clicked_at.iso8601(3)
+    end
 
-      response_json = parsed_response_json(response)
-      impression = Impression.last
-
-      verify_impression_json(response_json[:impression], impression)
+    if json[:installed_at]
+      expect(json[:installed_at]).to eql impression.installed_at.iso8601(3)
     end
   end
 
-  context "#update" do
+  context "#shown" do
     it "updates impression after ad is shown" do
-      impression_params = {
-        ad_unit_id: impression.ad_unit.id,
-        developer_app_id: impression.developer_app.id,
-        app_session_id: impression.app_session.id,
-        served: true,
-        served_at: Time.now - 1.second,
-        shown: true,
-        shown_at: Time.now,
-        clicked: false,
-        clicked_at: nil,
-      }
-
-      params = {
-        impression: impression_params,
-        id: impression.id
-      }
-
-      put :update, params: params, format: :json
+      put :shown, params: { impression_id: impression.id }, format: :json
 
       expect(response).to be_success
       response_json = parsed_response_json(response)
@@ -77,33 +55,29 @@ describe ImpressionsController, type: :controller do
 
       verify_impression_json(response_json[:impression], impression)
     end
+  end
 
+  context "#clicked" do
     it "updates impression after ad is clicked" do
-      impression_params = {
-        ad_unit_id: impression.ad_unit.id,
-        developer_app_id: impression.developer_app.id,
-        app_session_id: impression.app_session.id,
-        served: true,
-        served_at: Time.now - 2.seconds,
-        shown: true,
-        shown_at: Time.now - 1.second,
-        clicked: true,
-        clicked_at: Time.now,
-      }
-
-      params = {
-        impression: impression_params,
-        id: impression.id
-      }
-
-      put :update, params: params, format: :json
-
-      impression.reload
+      put :clicked, params: { impression_id: impression.id }, format: :json
 
       expect(response).to be_success
       response_json = parsed_response_json(response)
 
+      impression.reload
+
       verify_impression_json(response_json[:impression], impression)
+    end
+  end
+
+  context "#installed" do
+    it "updates impression after ad is installed" do
+      put :shown, params: impression_attribution_params, format: :json
+
+      response_json = parsed_response_json(response)
+
+      expect(response).to be_success
+      expect(response_json[:response]).to eql "postback received by AdSpecter server"
     end
   end
 end

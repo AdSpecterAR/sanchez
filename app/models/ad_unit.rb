@@ -2,6 +2,7 @@ class AdUnit < ApplicationRecord
 
   ### ASSOCIATIONS ###
 
+  has_many :impressions
   has_many :developer_apps, through: :impressions
   belongs_to :user
 

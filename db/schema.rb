@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180527204805) do
+ActiveRecord::Schema.define(version: 20180608183614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20180527204805) do
     t.string "click_url_android"
     t.string "click_url_ios"
     t.string "call_to_action"
+    t.string "attribution_partner"
+    t.string "impression_url_ios"
+    t.string "impression_url_android"
     t.index ["user_id"], name: "index_ad_units_on_user_id"
   end
 
@@ -93,6 +96,10 @@ ActiveRecord::Schema.define(version: 20180527204805) do
     t.bigint "app_session_id"
     t.bigint "ad_unit_id"
     t.integer "interaction_length"
+    t.string "idfa"
+    t.string "country"
+    t.boolean "installed"
+    t.datetime "installed_at"
     t.index ["ad_unit_id"], name: "index_impressions_on_ad_unit_id"
     t.index ["app_session_id"], name: "index_impressions_on_app_session_id"
     t.index ["developer_app_id"], name: "index_impressions_on_developer_app_id"
