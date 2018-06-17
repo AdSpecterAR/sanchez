@@ -6,7 +6,8 @@ class ApiKey < ApplicationRecord
 
   validates :key, uniqueness: true, presence: true, on: :create
   validates :developer_app, presence: true
-  validate :key_cannot_change
+  # TODO: reimplement
+  # validate :key_cannot_change
 
   ### CALLBACKS ###
 
