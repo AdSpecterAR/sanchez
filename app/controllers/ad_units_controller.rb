@@ -33,6 +33,24 @@ class AdUnitsController < ApplicationController
     end
   end
 
+  def fetch_portal
+    if params[:ad_format]
+      @ad_unit = AdUnit.fetch_portal(ad_format: params[:ad_format])
+
+      impression = @ad_unit.impressions.create(
+        app_session_id: params[:app_session_id],
+        developer_app_id: params[:developer_app_id]
+      )
+
+      render json: {
+        ad_unit: AdUnitRepresenter.represent(@ad_unit),
+        impression_id: impression.id
+      }
+    else
+      render json: { error: "Missing parameters" }
+    end
+  end
+
   def default
     # TODO: add logic to look at user ad format preferences
     @ad_unit = AdUnit.default_ad_unit

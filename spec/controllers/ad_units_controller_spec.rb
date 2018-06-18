@@ -18,6 +18,21 @@ describe AdUnitsController, type: :controller do
     }
   end
 
+  let!(:portal_ad_unit) { create(:ad_unit, :portal) }
+  let(:portal_ad_unit_params) do
+    {
+      title: portal_ad_unit.title,
+      description: portal_ad_unit.description,
+      click_url_default: portal_ad_unit.click_url_default,
+      ad_unit_url: portal_ad_unit.click_url_default,
+      active: true,
+      ad_format: portal_ad_unit.ad_format,
+      last_served_at: portal_ad_unit.last_served_at,
+      user_id: portal_ad_unit.user.id,
+      call_to_action: portal_ad_unit.call_to_action
+    }
+  end
+
   before do
     Timecop.freeze(Time.current)
   end
@@ -58,6 +73,18 @@ describe AdUnitsController, type: :controller do
       response_json = parsed_response_json(response)
 
       verify_ad_unit_json(response_json[:ad_unit], ad_unit)
+    end
+  end
+
+  describe "#fetch_portal" do
+    it "fetches the least recently served portal ad_unit" do
+      get :fetch_portal, params: portal_ad_unit_params
+
+      expect(response).to be_success
+
+      response_json = parsed_response_json(response)
+
+      verify_ad_unit_json(response_json[:ad_unit], portal_ad_unit)
     end
   end
 

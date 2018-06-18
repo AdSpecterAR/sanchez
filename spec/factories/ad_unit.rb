@@ -15,7 +15,6 @@ FactoryBot.define do
     click_url_android 'https://www.android.com/'
     click_url_ios 'https://www.apple.com/'
 
-
     trait :rewarded do
       rewarded true
     end
@@ -27,6 +26,12 @@ FactoryBot.define do
     trait :wide do
       aspect_ratio_width { 16 }
       aspect_ratio_height { 9 }
+    end
+
+    trait :portal do
+      ad_format { AdUnit::FORMAT_VIDEO_360 }
+      aspect_ratio_width { nil }
+      aspect_ratio_height { nil }
     end
   end
 end
