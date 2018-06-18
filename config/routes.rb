@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   get "/ad_units/default" => "ad_units#default"
   get "/ad_units/fetch" => "ad_units#fetch"
+  get "/ad_units/fetch_portal" => "ad_units#fetch_portal"
   post "/ad_units" => "ad_units#create"
 
   ### DEVELOPER APPS ###

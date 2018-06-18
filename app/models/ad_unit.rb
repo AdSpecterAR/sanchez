@@ -10,10 +10,14 @@ class AdUnit < ApplicationRecord
 
   FORMAT_IMAGE = 'image'
   FORMAT_VIDEO = 'video'
+  FORMAT_IMAGE_360 = 'image_360'
+  FORMAT_VIDEO_360 = 'video_360'
   FORMAT_PORTAL = 'portal'
   VALID_FORMATS = [
     FORMAT_IMAGE,
     FORMAT_VIDEO,
+    FORMAT_IMAGE_360,
+    FORMAT_VIDEO_360,
     FORMAT_PORTAL
   ]
   CTA_LEARN_MORE = 'Learn More'
@@ -51,17 +55,36 @@ class AdUnit < ApplicationRecord
 
   ### VALIDATIONS ###
 
-  validates :title, :ad_unit_url, :aspect_ratio_width, :aspect_ratio_height, :click_url_default, presence: true
+  validates :title, :ad_unit_url, :click_url_default, presence: true
   validates :ad_format, inclusion: VALID_FORMATS, presence: true
   validates :ad_format, inclusion: [FORMAT_VIDEO], presence: true, if: :rewarded
   validates :call_to_action, inclusion: VALID_CALLS_TO_ACTION, presence: true
+  # TODO: validate aspect ratios if ad_format is image or video
 
-  # TODO: validate aspect ratios
-  #
+
   class << self
     def default_ad_unit
       # TODO: change
       AdUnit.first
+    end
+
+    def fetch_all_portals(ad_format:)
+      # TODO: if used directly from controller, add maximum
+      # number of ads to query and revisit 'where'
+      AdUnit
+        .active
+        .order(%q{
+          CASE
+          WHEN last_served_at IS NULL THEN 1
+          ELSE 0 END DESC,
+          last_served_at ASC
+        })
+        .includes([:user])
+        .where(ad_format: ad_format)
+    end
+
+    def fetch_portal(ad_format:)
+      AdUnit.fetch_all_portals(ad_format: ad_format).take
     end
 
     def fetch_all(ad_format:, aspect_ratio_width:, aspect_ratio_height:)
